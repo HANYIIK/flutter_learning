@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:gap/gap.dart';
@@ -261,7 +262,69 @@ class _BasicWidgetsScreenState extends State<BasicWidgetsScreen> {
               ),
             ],
           ),
+          
+          const Gap(24),
+          
+          // GetX 路由演示
+          _buildSection(
+            title: 'GetX 路由跳转',
+            icon: Iconsax.routing,
+            children: [
+              const Text('体验 GetX 路由管理和页面跳转：'),
+              const Gap(16),
+              _buildRouteButton(
+                context,
+                title: '计数器演示',
+                subtitle: '简单状态管理',
+                icon: Iconsax.chart,
+                color: const Color(0xFF6366F1),
+                onTap: () => Get.toNamed('/counter-demo'),
+              ),
+              const Gap(12),
+              _buildRouteButton(
+                context,
+                title: '用户资料',
+                subtitle: '全局状态管理',
+                icon: Iconsax.user,
+                color: const Color(0xFFEC4899),
+                onTap: () => Get.toNamed('/user-profile'),
+              ),
+              const Gap(12),
+              _buildRouteButton(
+                context,
+                title: '设置页面',
+                subtitle: '应用设置',
+                icon: Iconsax.setting_2,
+                color: const Color(0xFF10B981),
+                onTap: () => Get.toNamed('/settings'),
+              ),
+            ],
+          ),
         ],
+      ),
+    );
+  }
+  
+  Widget _buildRouteButton(
+    BuildContext context, {
+    required String title,
+    required String subtitle,
+    required IconData icon,
+    required Color color,
+    required VoidCallback onTap,
+  }) {
+    return Card(
+      elevation: 0,
+      color: color.withOpacity(0.1),
+      child: ListTile(
+        leading: Icon(icon, color: color),
+        title: Text(
+          title,
+          style: const TextStyle(fontWeight: FontWeight.bold),
+        ),
+        subtitle: Text(subtitle),
+        trailing: Icon(Iconsax.arrow_right_3, color: color),
+        onTap: onTap,
       ),
     );
   }

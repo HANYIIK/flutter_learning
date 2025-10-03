@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:gap/gap.dart';
+import '../controllers/cart_controller.dart';
 
 class ListsScreen extends StatefulWidget {
   const ListsScreen({super.key});
@@ -240,7 +242,16 @@ class _ListsScreenState extends State<ListsScreen>
             elevation: 2,
             child: InkWell(
               onTap: () {
-                _showSnackBar('查看 ${product['name']}');
+                // 跳转到产品详情页，并传递参数
+                Get.toNamed(
+                  '/product-detail',
+                  arguments: {
+                    ...product,
+                    'description': '这是一款优秀的 ${product['name']}，'
+                        '采用最新技术打造，为您带来极致体验。具有强大的性能、'
+                        '精美的外观设计和可靠的质量保证。',
+                  },
+                );
               },
               borderRadius: BorderRadius.circular(16),
               child: Padding(
@@ -327,7 +338,17 @@ class _ListsScreenState extends State<ListsScreen>
                         const Gap(6),
                         IconButton(
                           onPressed: () {
-                            _showSnackBar('加入购物车');
+                            // 添加到购物车
+                            final CartController cartController = Get.find<CartController>();
+                            cartController.addItem(
+                              CartItem(
+                                id: product['name'] as String,
+                                name: product['name'] as String,
+                                price: double.parse(
+                                    (product['price'] as String).replaceAll('¥', '').replaceAll(',', '')),
+                                icon: product['icon'].toString(),
+                              ),
+                            );
                           },
                           icon: const Icon(Iconsax.shopping_cart, size: 20),
                           style: IconButton.styleFrom(
@@ -368,7 +389,15 @@ class _ListsScreenState extends State<ListsScreen>
           elevation: 2,
           child: InkWell(
             onTap: () {
-              _showSnackBar('点击了 ${product['name']}');
+              // 跳转到产品详情页
+              Get.toNamed(
+                '/product-detail',
+                arguments: {
+                  ...product,
+                  'description': '这是一款优秀的 ${product['name']}，'
+                      '采用最新技术打造，为您带来极致体验。',
+                },
+              );
             },
             borderRadius: BorderRadius.circular(16),
             child: Padding(

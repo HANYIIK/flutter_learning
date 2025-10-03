@@ -55,6 +55,7 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       bottomNavigationBar: Container(
         decoration: BoxDecoration(
+          color: Theme.of(context).colorScheme.surface,
           boxShadow: [
             BoxShadow(
               color: Colors.black.withOpacity(0.1),
@@ -63,65 +64,68 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ],
         ),
-        child: BottomNavigationBar(
-          currentIndex: _currentIndex,
-          onTap: (index) {
-            setState(() {
-              _currentIndex = index;
-            });
-          },
-          type: BottomNavigationBarType.fixed,
-          backgroundColor: Theme.of(context).colorScheme.surface,
-          selectedItemColor: _navItems[_currentIndex]['color'] as Color,
-          unselectedItemColor: Colors.grey,
-          selectedFontSize: 11,
-          unselectedFontSize: 11,
-          elevation: 0,
-          items: _navItems.map((item) {
-            final index = _navItems.indexOf(item);
-            final isSelected = _currentIndex == index;
-            
-            return BottomNavigationBarItem(
-              icon: Container(
-                padding: const EdgeInsets.symmetric(vertical: 6, horizontal: 12),
-                decoration: isSelected
-                    ? BoxDecoration(
-                        color: (item['color'] as Color).withOpacity(0.1),
-                        borderRadius: BorderRadius.circular(16),
-                      )
-                    : null,
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Icon(
-                      item['icon'] as IconData,
-                      size: 24,
-                      color: isSelected 
-                          ? item['color'] as Color 
-                          : Colors.grey,
+        child: SafeArea(
+          top: false,
+          child: SizedBox(
+            height: 60,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: _navItems.asMap().entries.map((entry) {
+                final index = entry.key;
+                final item = entry.value;
+                final isSelected = _currentIndex == index;
+                
+                return Expanded(
+                  child: InkWell(
+                    onTap: () {
+                      setState(() {
+                        _currentIndex = index;
+                      });
+                    },
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Container(
+                          padding: const EdgeInsets.all(6),
+                          decoration: isSelected
+                              ? BoxDecoration(
+                                  color: (item['color'] as Color).withOpacity(0.1),
+                                  borderRadius: BorderRadius.circular(10),
+                                )
+                              : null,
+                          child: Icon(
+                            item['icon'] as IconData,
+                            size: 22,
+                            color: isSelected 
+                                ? item['color'] as Color 
+                                : Colors.grey,
+                          ),
+                        ),
+                        const SizedBox(height: 2),
+                        Text(
+                          item['label'] as String,
+                          style: TextStyle(
+                            fontSize: 10,
+                            color: isSelected 
+                                ? item['color'] as Color 
+                                : Colors.grey,
+                            fontWeight: isSelected ? FontWeight.w600 : FontWeight.normal,
+                          ),
+                        ),
+                      ],
                     ),
-                    const SizedBox(height: 4),
-                    Text(
-                      item['label'] as String,
-                      style: TextStyle(
-                        fontSize: 11,
-                        color: isSelected 
-                            ? item['color'] as Color 
-                            : Colors.grey,
-                      ),
-                    ),
-                  ],
-                ),
-              ).animate(
-                target: isSelected ? 1 : 0,
-              ).scale(
-                duration: 200.ms,
-                begin: const Offset(1, 1),
-                end: const Offset(1.05, 1.05),
-              ),
-              label: '',
-            );
-          }).toList(),
+                  ).animate(
+                    target: isSelected ? 1 : 0,
+                  ).scale(
+                    duration: 200.ms,
+                    begin: const Offset(1, 1),
+                    end: const Offset(1.05, 1.05),
+                  ),
+                );
+              }).toList(),
+            ),
+          ),
         ),
       ),
     );

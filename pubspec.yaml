@@ -35,22 +35,24 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.8
   
-  # 最棒的Icon库
+  # 🎨 图标库
   iconsax: ^0.0.8  # 现代化、美观的图标库
   font_awesome_flutter: ^10.7.0  # 流行的FontAwesome图标
+  lucide_icons_flutter: ^1.0.0  # Lucide 图标库（类似 Web 端）
   
-  # 美观的字体
+  # 🎨 UI 和字体
   google_fonts: ^6.2.1  # Google字体库
+  flutter_screenutil: ^5.9.0  # 响应式屏幕适配（必备）
   
-  # 动画效果
+  # 🌈 动画效果
   flutter_animate: ^4.5.0  # 强大的动画库
   animated_text_kit: ^4.2.2  # 文字动画效果
   shimmer: ^3.0.0  # 加载动画效果
   
-  # 状态管理
-  provider: ^6.1.2  # 简单易用的状态管理
+  # 🚀 GetX 全家桶（状态管理 + 路由 + 工具）
+  get: ^4.6.6  # 最火的状态管理和路由解决方案
   
-  # 实用工具
+  # 🔧 实用工具
   gap: ^3.0.1  # 简化间距的widget
 
 dev_dependencies:

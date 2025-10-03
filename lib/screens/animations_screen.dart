@@ -274,65 +274,69 @@ class _AnimationsScreenState extends State<AnimationsScreen>
             child: Column(
               children: [
                 // 可展开的容器
-                AnimatedContainer(
-                  duration: const Duration(milliseconds: 300),
-                  curve: Curves.easeInOut,
-                  height: _isExpanded ? 200 : 60,
-                  decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                      colors: [
-                        const Color(0xFF6366F1),
-                        const Color(0xFF8B5CF6),
-                      ],
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(12),
+                  child: AnimatedContainer(
+                    duration: const Duration(milliseconds: 300),
+                    curve: Curves.easeInOut,
+                    height: _isExpanded ? 150 : 60,
+                    decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                        colors: [
+                          const Color(0xFF6366F1),
+                          const Color(0xFF8B5CF6),
+                        ],
+                      ),
                     ),
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                  child: Material(
-                    color: Colors.transparent,
-                    child: InkWell(
-                      onTap: () {
-                        setState(() {
-                          _isExpanded = !_isExpanded;
-                        });
-                      },
-                      borderRadius: BorderRadius.circular(12),
-                      child: Padding(
-                        padding: const EdgeInsets.all(16),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    child: Material(
+                      color: Colors.transparent,
+                      child: InkWell(
+                        onTap: () {
+                          setState(() {
+                            _isExpanded = !_isExpanded;
+                          });
+                        },
+                        child: Padding(
+                          padding: const EdgeInsets.all(16),
+                          child: SingleChildScrollView(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisSize: MainAxisSize.min,
                               children: [
-                                const Text(
-                                  '点击展开/收起',
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 16,
-                                  ),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    const Text(
+                                      '点击展开/收起',
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 16,
+                                      ),
+                                    ),
+                                    AnimatedRotation(
+                                      duration: const Duration(milliseconds: 300),
+                                      turns: _isExpanded ? 0.5 : 0,
+                                      child: const Icon(
+                                        Iconsax.arrow_down,
+                                        color: Colors.white,
+                                      ),
+                                    ),
+                                  ],
                                 ),
-                                AnimatedRotation(
-                                  duration: const Duration(milliseconds: 300),
-                                  turns: _isExpanded ? 0.5 : 0,
-                                  child: const Icon(
-                                    Iconsax.arrow_down,
-                                    color: Colors.white,
+                                if (_isExpanded) ...[
+                                  const Gap(16),
+                                  const Text(
+                                    '这是一个使用 AnimatedContainer 实现的动画效果。当你点击时，容器会平滑地展开或收起。',
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 14,
+                                    ),
                                   ),
-                                ),
+                                ],
                               ],
                             ),
-                            if (_isExpanded) ...[
-                              const Gap(16),
-                              const Text(
-                                '这是一个使用 AnimatedContainer 实现的动画效果。当你点击时，容器会平滑地展开或收起。这种动画在 Flutter 中非常容易实现！',
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 14,
-                                ),
-                              ),
-                            ],
-                          ],
+                          ),
                         ),
                       ),
                     ),

@@ -8,10 +8,10 @@ import 'controllers/cart_controller.dart';
 import 'controllers/user_controller.dart';
 
 void main() {
-  // 初始化全局控制器（永久存在，不会被销毁）
+  // 初始化全局控制器
   Get.put(CartController(), permanent: true);
   Get.put(UserController(), permanent: true);
-  
+
   runApp(const MyFlutterLearningApp());
 }
 
@@ -30,11 +30,11 @@ class MyFlutterLearningApp extends StatelessWidget {
         return GetMaterialApp(
           title: 'Flutter 教学项目',
           debugShowCheckedModeBanner: false,
-          
+
           // GetX 路由配置
           initialRoute: AppRoutes.home,
           getPages: AppPages.routes,
-          
+
           // 主题配置
           theme: ThemeData(
             // 使用 Material Design 3
@@ -64,7 +64,7 @@ class MyFlutterLearningApp extends StatelessWidget {
               ),
             ),
           ),
-          
+
           // GetX 配置
           defaultTransition: Transition.cupertino,
           transitionDuration: const Duration(milliseconds: 300),

@@ -2,8 +2,19 @@
 
 一个完整的 Flutter 入门教学项目，展示了 Flutter 开发的各种核心概念和最佳实践。采用现代化的底部导航设计，让学习体验更加流畅。
 
-> 📖 **[点击查看完整教学指南 →](docs/FLUTTER_GUIDE.md)**  
-> 专为有 React、Vue、uniapp 基础的全栈开发者准备！
+## 📚 教学文档（必读）
+
+### **🎯 根据你的水平选择：**
+
+#### **完全小白？从这里开始 👇**
+> 📘 **[Flutter 零基础入门教程](docs/FLUTTER_BASICS.md)** ⭐⭐⭐⭐⭐  
+> 从目录结构开始，逐行讲解 main.dart、GetX、Widget 等核心概念  
+> 适合：完全没接触过 Flutter 的新手
+
+#### **有 Web 开发经验？看这个 👇**
+> 📗 **[从 Web 到 Flutter 指南](docs/FLUTTER_GUIDE.md)** ⭐⭐⭐⭐⭐  
+> React/Vue/uniapp → Flutter 的完整对比教程  
+> 适合：有 React、Vue、uniapp 基础的全栈开发者
 
 ## ✨ 项目特色
 
@@ -139,8 +150,8 @@
 ## 📖 学习资源
 
 ### **本项目文档：**
-- 📘 **[Flutter 入门指南](docs/FLUTTER_GUIDE.md)** - 从 Web 到 Flutter（必读）
-- 📗 [技术选型说明](docs/技术选型.md) - 为什么选这些技术栈
+- 📘 **[Flutter 零基础入门](docs/FLUTTER_BASICS.md)** - 从零开始学 Flutter（小白必读）
+- 📗 **[从 Web 到 Flutter](docs/FLUTTER_GUIDE.md)** - Web 开发者的进阶指南
 
 ### **官方文档：**
 - [Flutter 官方文档](https://flutter.dev/docs)

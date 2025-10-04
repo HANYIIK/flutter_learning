@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:gap/gap.dart';
-import '../../controllers/cart_controller.dart';
+import 'package:my_first_ios_app/controllers/cart_controller.dart';
 
 /// 产品详情页
 /// 演示：路由参数传递、GetX 状态管理
@@ -12,14 +12,16 @@ class ProductDetailScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // 获取路由传递的参数
-    final Map<String, dynamic> product = Get.arguments ?? {
-      'name': '示例产品',
-      'price': '¥999',
-      'icon': Iconsax.mobile,
-      'color': const Color(0xFF6366F1),
-      'description': '这是一个示例产品描述',
-    };
-    
+    final Map<String, dynamic> product =
+        Get.arguments ??
+        {
+          'name': '示例产品',
+          'price': '¥999',
+          'icon': Iconsax.mobile,
+          'color': const Color(0xFF6366F1),
+          'description': '这是一个示例产品描述',
+        };
+
     // 获取购物车控制器（从全局获取，而不是创建新的）
     final CartController cartController = Get.find<CartController>();
 
@@ -38,27 +40,29 @@ class ProductDetailScreen extends StatelessWidget {
                   Get.toNamed('/cart-demo');
                 },
               ),
-              Obx(() => cartController.totalItems > 0
-                  ? Positioned(
-                      right: 8,
-                      top: 8,
-                      child: Container(
-                        padding: const EdgeInsets.all(4),
-                        decoration: BoxDecoration(
-                          color: Colors.red,
-                          shape: BoxShape.circle,
-                        ),
-                        child: Text(
-                          '${cartController.totalItems}',
-                          style: const TextStyle(
-                            color: Colors.white,
-                            fontSize: 10,
-                            fontWeight: FontWeight.bold,
+              Obx(
+                () => cartController.totalItems > 0
+                    ? Positioned(
+                        right: 8,
+                        top: 8,
+                        child: Container(
+                          padding: const EdgeInsets.all(4),
+                          decoration: BoxDecoration(
+                            color: Colors.red,
+                            shape: BoxShape.circle,
+                          ),
+                          child: Text(
+                            '${cartController.totalItems}',
+                            style: const TextStyle(
+                              color: Colors.white,
+                              fontSize: 10,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
                         ),
-                      ),
-                    )
-                  : const SizedBox()),
+                      )
+                    : const SizedBox(),
+              ),
             ],
           ),
         ],
@@ -89,7 +93,7 @@ class ProductDetailScreen extends StatelessWidget {
                 ),
               ),
             ),
-            
+
             Padding(
               padding: const EdgeInsets.all(24),
               child: Column(
@@ -112,18 +116,15 @@ class ProductDetailScreen extends StatelessWidget {
                       color: product['color'] as Color,
                     ),
                   ),
-                  
+
                   const Gap(16),
                   const Divider(),
                   const Gap(16),
-                  
+
                   // 产品描述
                   const Text(
                     '产品描述',
-                    style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                    ),
+                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                   ),
                   const Gap(8),
                   Text(
@@ -135,24 +136,21 @@ class ProductDetailScreen extends StatelessWidget {
                       color: Colors.grey,
                     ),
                   ),
-                  
+
                   const Gap(24),
-                  
+
                   // 产品特性
                   const Text(
                     '产品特性',
-                    style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                    ),
+                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                   ),
                   const Gap(12),
                   _buildFeature(Iconsax.shield_tick, '品质保证', '严格质检，品质可靠'),
                   _buildFeature(Iconsax.truck_fast, '快速配送', '闪电发货，极速送达'),
                   _buildFeature(Iconsax.security_user, '售后保障', '7天无理由退换货'),
-                  
+
                   const Gap(32),
-                  
+
                   // 加入购物车按钮
                   SizedBox(
                     width: double.infinity,
@@ -165,7 +163,10 @@ class ProductDetailScreen extends StatelessWidget {
                             id: product['name'] as String,
                             name: product['name'] as String,
                             price: double.parse(
-                                (product['price'] as String).replaceAll('¥', '').replaceAll(',', '')),
+                              (product['price'] as String)
+                                  .replaceAll('¥', '')
+                                  .replaceAll(',', ''),
+                            ),
                             icon: product['icon'].toString(),
                           ),
                         );
@@ -213,10 +214,7 @@ class ProductDetailScreen extends StatelessWidget {
                 ),
                 Text(
                   description,
-                  style: const TextStyle(
-                    color: Colors.grey,
-                    fontSize: 14,
-                  ),
+                  style: const TextStyle(color: Colors.grey, fontSize: 14),
                 ),
               ],
             ),
@@ -226,4 +224,3 @@ class ProductDetailScreen extends StatelessWidget {
     );
   }
 }
-

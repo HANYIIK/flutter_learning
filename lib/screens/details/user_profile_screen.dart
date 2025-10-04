@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:gap/gap.dart';
-import '../../controllers/user_controller.dart';
+import 'package:my_first_ios_app/controllers/user_controller.dart';
 
 /// 用户资料页
 /// 演示：GetX 全局状态管理
@@ -37,54 +37,57 @@ class UserProfileScreen extends StatelessWidget {
               padding: const EdgeInsets.all(32),
               decoration: BoxDecoration(
                 gradient: LinearGradient(
-                  colors: [
-                    const Color(0xFF6366F1),
-                    const Color(0xFF8B5CF6),
-                  ],
+                  colors: [const Color(0xFF6366F1), const Color(0xFF8B5CF6)],
                 ),
               ),
               child: Column(
                 children: [
                   // 头像
-                  Obx(() => Container(
-                        width: 100,
-                        height: 100,
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          shape: BoxShape.circle,
+                  Obx(
+                    () => Container(
+                      width: 100,
+                      height: 100,
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        shape: BoxShape.circle,
+                      ),
+                      child: Center(
+                        child: Text(
+                          userController.userAvatar.value,
+                          style: const TextStyle(fontSize: 50),
                         ),
-                        child: Center(
-                          child: Text(
-                            userController.userAvatar.value,
-                            style: const TextStyle(fontSize: 50),
-                          ),
-                        ),
-                      )),
+                      ),
+                    ),
+                  ),
                   const Gap(16),
                   // 用户名
-                  Obx(() => Text(
-                        userController.userName.value,
-                        style: const TextStyle(
-                          fontSize: 24,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white,
-                        ),
-                      )),
+                  Obx(
+                    () => Text(
+                      userController.userName.value,
+                      style: const TextStyle(
+                        fontSize: 24,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                      ),
+                    ),
+                  ),
                   const Gap(8),
                   // 邮箱
-                  Obx(() => Text(
-                        userController.userEmail.value,
-                        style: TextStyle(
-                          fontSize: 16,
-                          color: Colors.white.withOpacity(0.9),
-                        ),
-                      )),
+                  Obx(
+                    () => Text(
+                      userController.userEmail.value,
+                      style: TextStyle(
+                        fontSize: 16,
+                        color: Colors.white.withOpacity(0.9),
+                      ),
+                    ),
+                  ),
                 ],
               ),
             ),
-            
+
             const Gap(24),
-            
+
             // 功能列表
             Padding(
               padding: const EdgeInsets.all(16),
@@ -158,31 +161,26 @@ class UserProfileScreen extends StatelessWidget {
             color: (color ?? const Color(0xFF6366F1)).withOpacity(0.1),
             borderRadius: BorderRadius.circular(8),
           ),
-          child: Icon(
-            icon,
-            color: color ?? const Color(0xFF6366F1),
-          ),
+          child: Icon(icon, color: color ?? const Color(0xFF6366F1)),
         ),
         title: Text(
           title,
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
-            color: color,
-          ),
+          style: TextStyle(fontWeight: FontWeight.bold, color: color),
         ),
         subtitle: Text(subtitle),
-        trailing: Icon(
-          Iconsax.arrow_right_3,
-          color: color ?? Colors.grey,
-        ),
+        trailing: Icon(Iconsax.arrow_right_3, color: color ?? Colors.grey),
         onTap: onTap,
       ),
     );
   }
 
   void _showEditDialog(BuildContext context, UserController controller) {
-    final nameController = TextEditingController(text: controller.userName.value);
-    final emailController = TextEditingController(text: controller.userEmail.value);
+    final nameController = TextEditingController(
+      text: controller.userName.value,
+    );
+    final emailController = TextEditingController(
+      text: controller.userEmail.value,
+    );
 
     Get.dialog(
       AlertDialog(
@@ -208,10 +206,7 @@ class UserProfileScreen extends StatelessWidget {
           ],
         ),
         actions: [
-          TextButton(
-            onPressed: () => Get.back(),
-            child: const Text('取消'),
-          ),
+          TextButton(onPressed: () => Get.back(), child: const Text('取消')),
           FilledButton(
             onPressed: () {
               controller.updateName(nameController.text);
@@ -232,18 +227,13 @@ class UserProfileScreen extends StatelessWidget {
         title: const Text('退出登录'),
         content: const Text('确定要退出登录吗？'),
         actions: [
-          TextButton(
-            onPressed: () => Get.back(),
-            child: const Text('取消'),
-          ),
+          TextButton(onPressed: () => Get.back(), child: const Text('取消')),
           FilledButton(
             onPressed: () {
               controller.logout();
               Get.back();
             },
-            style: FilledButton.styleFrom(
-              backgroundColor: Colors.red,
-            ),
+            style: FilledButton.styleFrom(backgroundColor: Colors.red),
             child: const Text('退出'),
           ),
         ],
@@ -251,4 +241,3 @@ class UserProfileScreen extends StatelessWidget {
     );
   }
 }
-

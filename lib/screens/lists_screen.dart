@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:gap/gap.dart';
-import '../controllers/cart_controller.dart';
+import 'package:my_first_ios_app/controllers/cart_controller.dart';
 
 class ListsScreen extends StatefulWidget {
   const ListsScreen({super.key});
@@ -98,11 +98,7 @@ class _ListsScreenState extends State<ListsScreen>
       ),
       body: TabBarView(
         controller: _tabController,
-        children: [
-          _buildBasicList(),
-          _buildCardList(),
-          _buildGridView(),
-        ],
+        children: [_buildBasicList(), _buildCardList(), _buildGridView()],
       ),
     );
   }
@@ -132,7 +128,7 @@ class _ListsScreenState extends State<ListsScreen>
                   ],
                 ),
                 const Gap(16),
-                
+
                 // 简单列表项
                 ...List.generate(_fruits.length, (index) {
                   final fruit = _fruits[index];
@@ -165,9 +161,9 @@ class _ListsScreenState extends State<ListsScreen>
             ),
           ),
         ),
-        
+
         const Gap(16),
-        
+
         // 可展开列表
         Card(
           child: Padding(
@@ -247,7 +243,8 @@ class _ListsScreenState extends State<ListsScreen>
                   '/product-detail',
                   arguments: {
                     ...product,
-                    'description': '这是一款优秀的 ${product['name']}，'
+                    'description':
+                        '这是一款优秀的 ${product['name']}，'
                         '采用最新技术打造，为您带来极致体验。具有强大的性能、'
                         '精美的外观设计和可靠的质量保证。',
                   },
@@ -327,8 +324,8 @@ class _ListsScreenState extends State<ListsScreen>
                           },
                           icon: const Icon(Iconsax.heart, size: 20),
                           style: IconButton.styleFrom(
-                            backgroundColor:
-                                (product['color'] as Color).withOpacity(0.1),
+                            backgroundColor: (product['color'] as Color)
+                                .withOpacity(0.1),
                             foregroundColor: product['color'] as Color,
                             padding: const EdgeInsets.all(8),
                             minimumSize: const Size(36, 36),
@@ -339,21 +336,25 @@ class _ListsScreenState extends State<ListsScreen>
                         IconButton(
                           onPressed: () {
                             // 添加到购物车
-                            final CartController cartController = Get.find<CartController>();
+                            final CartController cartController =
+                                Get.find<CartController>();
                             cartController.addItem(
                               CartItem(
                                 id: product['name'] as String,
                                 name: product['name'] as String,
                                 price: double.parse(
-                                    (product['price'] as String).replaceAll('¥', '').replaceAll(',', '')),
+                                  (product['price'] as String)
+                                      .replaceAll('¥', '')
+                                      .replaceAll(',', ''),
+                                ),
                                 icon: product['icon'].toString(),
                               ),
                             );
                           },
                           icon: const Icon(Iconsax.shopping_cart, size: 20),
                           style: IconButton.styleFrom(
-                            backgroundColor:
-                                (product['color'] as Color).withOpacity(0.1),
+                            backgroundColor: (product['color'] as Color)
+                                .withOpacity(0.1),
                             foregroundColor: product['color'] as Color,
                             padding: const EdgeInsets.all(8),
                             minimumSize: const Size(36, 36),
@@ -394,7 +395,8 @@ class _ListsScreenState extends State<ListsScreen>
                 '/product-detail',
                 arguments: {
                   ...product,
-                  'description': '这是一款优秀的 ${product['name']}，'
+                  'description':
+                      '这是一款优秀的 ${product['name']}，'
                       '采用最新技术打造，为您带来极致体验。',
                 },
               );
@@ -475,11 +477,8 @@ class _ListsScreenState extends State<ListsScreen>
       SnackBar(
         content: Text(message),
         behavior: SnackBarBehavior.floating,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(10),
-        ),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
       ),
     );
   }
 }
-

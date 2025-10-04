@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:gap/gap.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import '../../controllers/counter_controller.dart';
+import 'package:my_first_ios_app/controllers/counter_controller.dart';
 
 /// 计数器演示页面
 /// 演示：GetX 最简单的状态管理
@@ -33,34 +33,33 @@ class CounterDemoScreen extends StatelessWidget {
                 textAlign: TextAlign.center,
               ),
               const Gap(32),
-              
+
               // 计数显示（使用 Obx 监听状态变化）
-              Obx(() => Text(
-                    '${controller.count}',
-                    style: const TextStyle(
-                      fontSize: 80,
-                      fontWeight: FontWeight.bold,
-                      color: Color(0xFF6366F1),
-                    ),
-                  ).animate(
-                    key: ValueKey(controller.count.value),
-                  ).scale(
-                    duration: 300.ms,
-                    begin: const Offset(0.8, 0.8),
-                  )),
-              
+              Obx(
+                () =>
+                    Text(
+                          '${controller.count}',
+                          style: const TextStyle(
+                            fontSize: 80,
+                            fontWeight: FontWeight.bold,
+                            color: Color(0xFF6366F1),
+                          ),
+                        )
+                        .animate(key: ValueKey(controller.count.value))
+                        .scale(duration: 300.ms, begin: const Offset(0.8, 0.8)),
+              ),
+
               const Gap(16),
-              
-              Obx(() => Text(
-                    controller.count.value >= 0 ? '当前计数' : '负数计数',
-                    style: const TextStyle(
-                      fontSize: 18,
-                      color: Colors.grey,
-                    ),
-                  )),
-              
+
+              Obx(
+                () => Text(
+                  controller.count.value >= 0 ? '当前计数' : '负数计数',
+                  style: const TextStyle(fontSize: 18, color: Colors.grey),
+                ),
+              ),
+
               const Gap(48),
-              
+
               // 操作按钮
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -90,9 +89,9 @@ class CounterDemoScreen extends StatelessWidget {
                   ),
                 ],
               ),
-              
+
               const Gap(48),
-              
+
               // 快捷设置
               Card(
                 child: Padding(
@@ -122,9 +121,9 @@ class CounterDemoScreen extends StatelessWidget {
                   ),
                 ),
               ),
-              
+
               const Gap(24),
-              
+
               // 说明卡片
               Card(
                 color: const Color(0xFF6366F1).withOpacity(0.1),
@@ -135,7 +134,10 @@ class CounterDemoScreen extends StatelessWidget {
                     children: [
                       Row(
                         children: [
-                          const Icon(Iconsax.info_circle, color: Color(0xFF6366F1)),
+                          const Icon(
+                            Iconsax.info_circle,
+                            color: Color(0xFF6366F1),
+                          ),
                           const Gap(8),
                           const Text(
                             'GetX 状态管理',
@@ -157,7 +159,7 @@ class CounterDemoScreen extends StatelessWidget {
                   ),
                 ),
               ),
-              
+
               const SizedBox(height: 40),
             ],
           ),
@@ -166,4 +168,3 @@ class CounterDemoScreen extends StatelessWidget {
     );
   }
 }
-

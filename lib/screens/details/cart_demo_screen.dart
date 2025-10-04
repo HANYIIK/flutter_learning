@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:gap/gap.dart';
-import '../../controllers/cart_controller.dart';
+import 'package:my_first_ios_app/controllers/cart_controller.dart';
 
 /// 购物车演示页面
 /// 演示：GetX 复杂状态管理（列表操作）
@@ -68,18 +68,12 @@ class CartDemoScreen extends StatelessWidget {
                       const Gap(16),
                       Text(
                         '购物车是空的',
-                        style: TextStyle(
-                          fontSize: 18,
-                          color: Colors.grey[600],
-                        ),
+                        style: TextStyle(fontSize: 18, color: Colors.grey[600]),
                       ),
                       const Gap(8),
                       Text(
                         '前往列表页面添加商品',
-                        style: TextStyle(
-                          fontSize: 14,
-                          color: Colors.grey[400],
-                        ),
+                        style: TextStyle(fontSize: 14, color: Colors.grey[400]),
                       ),
                     ],
                   ),
@@ -191,79 +185,80 @@ class CartDemoScreen extends StatelessWidget {
               );
             }),
           ),
-          
+
           // 底部总计栏
-          Obx(() => controller.items.isEmpty
-              ? const SizedBox()
-              : Container(
-                  padding: const EdgeInsets.all(24),
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black.withOpacity(0.1),
-                        blurRadius: 10,
-                        offset: const Offset(0, -5),
-                      ),
-                    ],
-                  ),
-                  child: Column(
-                    children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                '共 ${controller.totalItems} 件商品',
-                                style: const TextStyle(
-                                  color: Colors.grey,
-                                  fontSize: 14,
+          Obx(
+            () => controller.items.isEmpty
+                ? const SizedBox()
+                : Container(
+                    padding: const EdgeInsets.all(24),
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black.withOpacity(0.1),
+                          blurRadius: 10,
+                          offset: const Offset(0, -5),
+                        ),
+                      ],
+                    ),
+                    child: Column(
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  '共 ${controller.totalItems} 件商品',
+                                  style: const TextStyle(
+                                    color: Colors.grey,
+                                    fontSize: 14,
+                                  ),
                                 ),
-                              ),
-                              const Gap(4),
-                              Text(
-                                '¥${controller.totalPrice.toStringAsFixed(2)}',
-                                style: const TextStyle(
-                                  fontSize: 28,
-                                  fontWeight: FontWeight.bold,
-                                  color: Color(0xFFEC4899),
+                                const Gap(4),
+                                Text(
+                                  '¥${controller.totalPrice.toStringAsFixed(2)}',
+                                  style: const TextStyle(
+                                    fontSize: 28,
+                                    fontWeight: FontWeight.bold,
+                                    color: Color(0xFFEC4899),
+                                  ),
                                 ),
-                              ),
-                            ],
-                          ),
-                          ElevatedButton(
-                            onPressed: () {
-                              Get.snackbar(
-                                '成功',
-                                '订单已提交！总计：¥${controller.totalPrice.toStringAsFixed(2)}',
+                              ],
+                            ),
+                            ElevatedButton(
+                              onPressed: () {
+                                Get.snackbar(
+                                  '成功',
+                                  '订单已提交！总计：¥${controller.totalPrice.toStringAsFixed(2)}',
+                                  backgroundColor: const Color(0xFFEC4899),
+                                  colorText: Colors.white,
+                                );
+                                controller.clearCart();
+                              },
+                              style: ElevatedButton.styleFrom(
                                 backgroundColor: const Color(0xFFEC4899),
-                                colorText: Colors.white,
-                              );
-                              controller.clearCart();
-                            },
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: const Color(0xFFEC4899),
-                              foregroundColor: Colors.white,
-                              padding: const EdgeInsets.symmetric(
-                                horizontal: 32,
-                                vertical: 16,
+                                foregroundColor: Colors.white,
+                                padding: const EdgeInsets.symmetric(
+                                  horizontal: 32,
+                                  vertical: 16,
+                                ),
+                              ),
+                              child: const Text(
+                                '去结算',
+                                style: TextStyle(fontSize: 16),
                               ),
                             ),
-                            child: const Text(
-                              '去结算',
-                              style: TextStyle(fontSize: 16),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
-                )),
+          ),
         ],
       ),
     );
   }
 }
-

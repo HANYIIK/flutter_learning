@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'routes/app_pages.dart';
-import 'routes/app_routes.dart';
-import 'controllers/cart_controller.dart';
-import 'controllers/user_controller.dart';
+import 'package:my_first_ios_app/routes/app_pages.dart';
+import 'package:my_first_ios_app/routes/app_routes.dart';
+import 'package:my_first_ios_app/controllers/cart_controller.dart';
+import 'package:my_first_ios_app/controllers/user_controller.dart';
 
 void main() {
   // 初始化全局控制器

@@ -7,7 +7,7 @@ class CartItem {
   final double price;
   final String icon;
   int quantity;
-  
+
   CartItem({
     required this.id,
     required this.name,
@@ -15,7 +15,7 @@ class CartItem {
     required this.icon,
     this.quantity = 1,
   });
-  
+
   double get total => price * quantity;
 }
 
@@ -24,13 +24,13 @@ class CartItem {
 class CartController extends GetxController {
   // 购物车商品列表（响应式）
   var items = <CartItem>[].obs;
-  
+
   // 计算总价（响应式计算属性）
   double get totalPrice => items.fold(0, (sum, item) => sum + item.total);
-  
+
   // 计算商品总数
   int get totalItems => items.fold(0, (sum, item) => sum + item.quantity);
-  
+
   // 添加商品到购物车
   void addItem(CartItem item) {
     // 检查是否已存在
@@ -43,7 +43,7 @@ class CartController extends GetxController {
       // 不存在，添加新商品
       items.add(item);
     }
-    
+
     // 显示提示
     Get.snackbar(
       '已添加',
@@ -51,12 +51,12 @@ class CartController extends GetxController {
       duration: const Duration(seconds: 1),
     );
   }
-  
+
   // 移除商品
   void removeItem(String id) {
     items.removeWhere((item) => item.id == id);
   }
-  
+
   // 增加商品数量
   void increaseQuantity(String id) {
     final index = items.indexWhere((item) => item.id == id);
@@ -65,7 +65,7 @@ class CartController extends GetxController {
       items.refresh();
     }
   }
-  
+
   // 减少商品数量
   void decreaseQuantity(String id) {
     final index = items.indexWhere((item) => item.id == id);
@@ -74,11 +74,10 @@ class CartController extends GetxController {
       items.refresh();
     }
   }
-  
+
   // 清空购物车
   void clearCart() {
     items.clear();
     Get.snackbar('购物车已清空', '所有商品已移除');
   }
 }
-

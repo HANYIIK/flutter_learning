@@ -65,9 +65,9 @@ class _AnimationsScreenState extends State<AnimationsScreen>
                     ],
                   ),
                 ).animate().fadeIn(duration: 1000.ms),
-                
+
                 const Gap(16),
-                
+
                 // 滑动动画
                 Container(
                   padding: const EdgeInsets.all(16),
@@ -83,50 +83,50 @@ class _AnimationsScreenState extends State<AnimationsScreen>
                     ],
                   ),
                 ).animate().slideX(begin: -1, duration: 800.ms),
-                
+
                 const Gap(16),
-                
+
                 // 缩放动画
                 Container(
-                  padding: const EdgeInsets.all(16),
-                  decoration: BoxDecoration(
-                    color: Colors.orange.withOpacity(0.1),
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                  child: const Row(
-                    children: [
-                      Icon(Iconsax.size, color: Colors.orange),
-                      Gap(8),
-                      Text('缩放动画'),
-                    ],
-                  ),
-                )
+                      padding: const EdgeInsets.all(16),
+                      decoration: BoxDecoration(
+                        color: Colors.orange.withOpacity(0.1),
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      child: const Row(
+                        children: [
+                          Icon(Iconsax.size, color: Colors.orange),
+                          Gap(8),
+                          Text('缩放动画'),
+                        ],
+                      ),
+                    )
                     .animate()
                     .scale(duration: 800.ms)
                     .then()
                     .shimmer(duration: 1000.ms),
-                
+
                 const Gap(16),
-                
+
                 // 组合动画
                 Container(
-                  padding: const EdgeInsets.all(16),
-                  decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                      colors: [Colors.purple, Colors.pink],
-                    ),
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                  child: const Center(
-                    child: Text(
-                      '组合动画效果',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
+                      padding: const EdgeInsets.all(16),
+                      decoration: BoxDecoration(
+                        gradient: LinearGradient(
+                          colors: [Colors.purple, Colors.pink],
+                        ),
+                        borderRadius: BorderRadius.circular(12),
                       ),
-                    ),
-                  ),
-                )
+                      child: const Center(
+                        child: Text(
+                          '组合动画效果',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                    )
                     .animate()
                     .fadeIn(duration: 500.ms)
                     .scale(duration: 500.ms)
@@ -135,9 +135,9 @@ class _AnimationsScreenState extends State<AnimationsScreen>
               ],
             ),
           ),
-          
+
           const Gap(24),
-          
+
           // 文字动画
           _buildSection(
             title: '文字动画',
@@ -159,9 +159,9 @@ class _AnimationsScreenState extends State<AnimationsScreen>
                   ],
                   totalRepeatCount: 3,
                 ),
-                
+
                 const Gap(24),
-                
+
                 // 淡入淡出效果
                 AnimatedTextKit(
                   animatedTexts: [
@@ -193,9 +193,9 @@ class _AnimationsScreenState extends State<AnimationsScreen>
                   pause: const Duration(milliseconds: 500),
                   repeatForever: true,
                 ),
-                
+
                 const Gap(24),
-                
+
                 // 波浪效果
                 AnimatedTextKit(
                   animatedTexts: [
@@ -213,9 +213,9 @@ class _AnimationsScreenState extends State<AnimationsScreen>
               ],
             ),
           ),
-          
+
           const Gap(24),
-          
+
           // Shimmer 加载效果
           _buildSection(
             title: 'Shimmer 加载效果',
@@ -264,9 +264,9 @@ class _AnimationsScreenState extends State<AnimationsScreen>
               ],
             ),
           ),
-          
+
           const Gap(24),
-          
+
           // 交互动画
           _buildSection(
             title: '交互动画',
@@ -304,7 +304,8 @@ class _AnimationsScreenState extends State<AnimationsScreen>
                               mainAxisSize: MainAxisSize.min,
                               children: [
                                 Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
                                   children: [
                                     const Text(
                                       '点击展开/收起',
@@ -315,7 +316,9 @@ class _AnimationsScreenState extends State<AnimationsScreen>
                                       ),
                                     ),
                                     AnimatedRotation(
-                                      duration: const Duration(milliseconds: 300),
+                                      duration: const Duration(
+                                        milliseconds: 300,
+                                      ),
                                       turns: _isExpanded ? 0.5 : 0,
                                       child: const Icon(
                                         Iconsax.arrow_down,
@@ -342,9 +345,9 @@ class _AnimationsScreenState extends State<AnimationsScreen>
                     ),
                   ),
                 ),
-                
+
                 const Gap(24),
-                
+
                 // 旋转的图标
                 RotationTransition(
                   turns: _controller,
@@ -399,4 +402,3 @@ class _AnimationsScreenState extends State<AnimationsScreen>
     );
   }
 }
-

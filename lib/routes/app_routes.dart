@@ -3,7 +3,7 @@
 class AppRoutes {
   // 主页面（TabBar 容器）
   static const home = '/';
-  
+
   // 详情页面
   static const productDetail = '/product-detail';
   static const userProfile = '/user-profile';
@@ -12,4 +12,3 @@ class AppRoutes {
   static const counterDemo = '/counter-demo';
   static const cartDemo = '/cart-demo';
 }
-

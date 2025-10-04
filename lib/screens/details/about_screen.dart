@@ -26,52 +26,36 @@ class AboutScreen extends StatelessWidget {
               height: 120,
               decoration: BoxDecoration(
                 gradient: LinearGradient(
-                  colors: [
-                    const Color(0xFF6366F1),
-                    const Color(0xFF8B5CF6),
-                  ],
+                  colors: [const Color(0xFF6366F1), const Color(0xFF8B5CF6)],
                 ),
                 borderRadius: BorderRadius.circular(30),
               ),
               child: const Center(
-                child: Icon(
-                  Iconsax.code_circle,
-                  size: 60,
-                  color: Colors.white,
-                ),
+                child: Icon(Iconsax.code_circle, size: 60, color: Colors.white),
               ),
             ),
             const Gap(24),
-            
+
             const Text(
               'Flutter 教学项目',
-              style: TextStyle(
-                fontSize: 28,
-                fontWeight: FontWeight.bold,
-              ),
+              style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
             ),
             const Gap(8),
             const Text(
               'v1.0.0',
-              style: TextStyle(
-                fontSize: 16,
-                color: Colors.grey,
-              ),
+              style: TextStyle(fontSize: 16, color: Colors.grey),
             ),
-            
+
             const Gap(32),
-            
+
             const Text(
               '一个完整的 Flutter 入门教学项目，展示了 Flutter 开发的各种核心概念和最佳实践。',
               textAlign: TextAlign.center,
-              style: TextStyle(
-                fontSize: 16,
-                height: 1.5,
-              ),
+              style: TextStyle(fontSize: 16, height: 1.5),
             ),
-            
+
             const Gap(32),
-            
+
             // 功能特性
             Card(
               child: Padding(
@@ -97,9 +81,9 @@ class AboutScreen extends StatelessWidget {
                 ),
               ),
             ),
-            
+
             const Gap(24),
-            
+
             // 技术栈
             Card(
               child: Padding(
@@ -124,9 +108,9 @@ class AboutScreen extends StatelessWidget {
                 ),
               ),
             ),
-            
+
             const Gap(32),
-            
+
             // 联系方式（可选）
             OutlinedButton.icon(
               onPressed: () {
@@ -135,18 +119,18 @@ class AboutScreen extends StatelessWidget {
               icon: const Icon(Iconsax.heart),
               label: const Text('给我们反馈'),
               style: OutlinedButton.styleFrom(
-                padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 24,
+                  vertical: 12,
+                ),
               ),
             ),
-            
+
             const Gap(16),
-            
+
             Text(
               '© 2024 Flutter 教学项目',
-              style: TextStyle(
-                color: Colors.grey[400],
-                fontSize: 12,
-              ),
+              style: TextStyle(color: Colors.grey[400], fontSize: 12),
             ),
           ],
         ),
@@ -173,10 +157,7 @@ class AboutScreen extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text(
-            name,
-            style: const TextStyle(fontWeight: FontWeight.w500),
-          ),
+          Text(name, style: const TextStyle(fontWeight: FontWeight.w500)),
           Text(
             description,
             style: const TextStyle(color: Colors.grey, fontSize: 12),
@@ -186,4 +167,3 @@ class AboutScreen extends StatelessWidget {
     );
   }
 }
-

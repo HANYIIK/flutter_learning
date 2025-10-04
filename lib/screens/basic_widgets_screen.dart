@@ -64,25 +64,19 @@ class _BasicWidgetsScreenState extends State<BasicWidgetsScreen> {
               ),
             ],
           ),
-          
+
           const Gap(24),
-          
+
           // 文本组件
           _buildSection(
             title: '文本组件',
             icon: Iconsax.text,
             children: [
-              const Text(
-                '普通文本',
-                style: TextStyle(fontSize: 16),
-              ),
+              const Text('普通文本', style: TextStyle(fontSize: 16)),
               const Gap(8),
               const Text(
                 '粗体文本',
-                style: TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                ),
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
               const Gap(8),
               Text(
@@ -100,9 +94,9 @@ class _BasicWidgetsScreenState extends State<BasicWidgetsScreen> {
               ),
             ],
           ),
-          
+
           const Gap(24),
-          
+
           // Icon 组件
           _buildSection(
             title: 'Icon 图标库',
@@ -116,14 +110,18 @@ class _BasicWidgetsScreenState extends State<BasicWidgetsScreen> {
                   _buildIconExample(Iconsax.home, '首页', Colors.blue),
                   _buildIconExample(Iconsax.heart5, '喜欢', Colors.red),
                   _buildIconExample(Iconsax.star1, '星标', Colors.orange),
-                  _buildIconExample(FontAwesomeIcons.rocket, '火箭', Colors.purple),
+                  _buildIconExample(
+                    FontAwesomeIcons.rocket,
+                    '火箭',
+                    Colors.purple,
+                  ),
                 ],
               ),
             ],
           ),
-          
+
           const Gap(24),
-          
+
           // 交互组件
           _buildSection(
             title: '交互组件',
@@ -139,10 +137,7 @@ class _BasicWidgetsScreenState extends State<BasicWidgetsScreen> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    const Text(
-                      '计数器示例：',
-                      style: TextStyle(fontSize: 16),
-                    ),
+                    const Text('计数器示例：', style: TextStyle(fontSize: 16)),
                     Row(
                       children: [
                         IconButton(
@@ -170,7 +165,7 @@ class _BasicWidgetsScreenState extends State<BasicWidgetsScreen> {
                 ),
               ),
               const Gap(16),
-              
+
               // Switch 开关
               SwitchListTile(
                 title: const Text('开关示例'),
@@ -180,9 +175,9 @@ class _BasicWidgetsScreenState extends State<BasicWidgetsScreen> {
                   setState(() => _switchValue = value);
                 },
               ),
-              
+
               const Gap(16),
-              
+
               // Slider 滑块
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -202,9 +197,9 @@ class _BasicWidgetsScreenState extends State<BasicWidgetsScreen> {
               ),
             ],
           ),
-          
+
           const Gap(24),
-          
+
           // 容器和布局
           _buildSection(
             title: '容器与布局',
@@ -262,9 +257,9 @@ class _BasicWidgetsScreenState extends State<BasicWidgetsScreen> {
               ),
             ],
           ),
-          
+
           const Gap(24),
-          
+
           // GetX 路由演示
           _buildSection(
             title: 'GetX 路由跳转',
@@ -304,7 +299,7 @@ class _BasicWidgetsScreenState extends State<BasicWidgetsScreen> {
       ),
     );
   }
-  
+
   Widget _buildRouteButton(
     BuildContext context, {
     required String title,
@@ -318,10 +313,7 @@ class _BasicWidgetsScreenState extends State<BasicWidgetsScreen> {
       color: color.withOpacity(0.1),
       child: ListTile(
         leading: Icon(icon, color: color),
-        title: Text(
-          title,
-          style: const TextStyle(fontWeight: FontWeight.bold),
-        ),
+        title: Text(title, style: const TextStyle(fontWeight: FontWeight.bold)),
         subtitle: Text(subtitle),
         trailing: Icon(Iconsax.arrow_right_3, color: color),
         onTap: onTap,
@@ -373,10 +365,7 @@ class _BasicWidgetsScreenState extends State<BasicWidgetsScreen> {
           child: Icon(icon, color: color, size: 28),
         ),
         const Gap(8),
-        Text(
-          label,
-          style: const TextStyle(fontSize: 12),
-        ),
+        Text(label, style: const TextStyle(fontSize: 12)),
       ],
     );
   }
@@ -386,11 +375,8 @@ class _BasicWidgetsScreenState extends State<BasicWidgetsScreen> {
       SnackBar(
         content: Text(message),
         behavior: SnackBarBehavior.floating,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(10),
-        ),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
       ),
     );
   }
 }
-

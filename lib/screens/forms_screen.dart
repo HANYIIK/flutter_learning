@@ -64,9 +64,9 @@ class _FormsScreenState extends State<FormsScreen> {
                       return null;
                     },
                   ).animate().fadeIn(delay: 100.ms).slideX(begin: -0.1),
-                  
+
                   const Gap(20),
-                  
+
                   // 邮箱输入
                   _buildModernTextField(
                     controller: _emailController,
@@ -84,9 +84,9 @@ class _FormsScreenState extends State<FormsScreen> {
                       return null;
                     },
                   ).animate().fadeIn(delay: 200.ms).slideX(begin: -0.1),
-                  
+
                   const Gap(20),
-                  
+
                   // 密码输入 - 现代化设计
                   _buildModernTextField(
                     controller: _passwordController,
@@ -118,9 +118,9 @@ class _FormsScreenState extends State<FormsScreen> {
                 ],
               ),
             ),
-            
+
             const Gap(24),
-            
+
             // 现代化选择器
             _buildModernSection(
               title: '偏好设置',
@@ -165,9 +165,9 @@ class _FormsScreenState extends State<FormsScreen> {
                       ),
                     ],
                   ).animate().fadeIn(delay: 100.ms),
-                  
+
                   const Gap(24),
-                  
+
                   // 评分 - 现代化设计
                   const Text(
                     '服务评分',
@@ -199,7 +199,9 @@ class _FormsScreenState extends State<FormsScreen> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: List.generate(5, (index) {
                             return Padding(
-                              padding: const EdgeInsets.symmetric(horizontal: 4),
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 4,
+                              ),
                               child: Icon(
                                 index < _rating.round()
                                     ? Iconsax.star1
@@ -214,9 +216,13 @@ class _FormsScreenState extends State<FormsScreen> {
                         SliderTheme(
                           data: SliderThemeData(
                             activeTrackColor: const Color(0xFFF59E0B),
-                            inactiveTrackColor: const Color(0xFFF59E0B).withOpacity(0.2),
+                            inactiveTrackColor: const Color(
+                              0xFFF59E0B,
+                            ).withOpacity(0.2),
                             thumbColor: const Color(0xFFF59E0B),
-                            overlayColor: const Color(0xFFF59E0B).withOpacity(0.2),
+                            overlayColor: const Color(
+                              0xFFF59E0B,
+                            ).withOpacity(0.2),
                             trackHeight: 4,
                           ),
                           child: Slider(
@@ -244,13 +250,13 @@ class _FormsScreenState extends State<FormsScreen> {
                       ],
                     ),
                   ).animate().fadeIn(delay: 200.ms).scale(),
-                  
+
                   const Gap(24),
-                  
+
                   // 同意条款 - 现代化设计
                   Container(
                     decoration: BoxDecoration(
-                      color: _agreeToTerms 
+                      color: _agreeToTerms
                           ? const Color(0xFF10B981).withOpacity(0.1)
                           : Colors.grey.withOpacity(0.05),
                       borderRadius: BorderRadius.circular(12),
@@ -275,23 +281,22 @@ class _FormsScreenState extends State<FormsScreen> {
                       activeColor: const Color(0xFF10B981),
                       checkColor: Colors.white,
                       controlAffinity: ListTileControlAffinity.leading,
-                      contentPadding: const EdgeInsets.symmetric(horizontal: 12),
+                      contentPadding: const EdgeInsets.symmetric(
+                        horizontal: 12,
+                      ),
                     ),
                   ).animate().fadeIn(delay: 300.ms),
                 ],
               ),
             ),
-            
+
             const Gap(32),
-            
+
             // 现代化提交按钮
             Container(
               decoration: BoxDecoration(
                 gradient: LinearGradient(
-                  colors: [
-                    const Color(0xFF10B981),
-                    const Color(0xFF059669),
-                  ],
+                  colors: [const Color(0xFF10B981), const Color(0xFF059669)],
                 ),
                 borderRadius: BorderRadius.circular(16),
                 boxShadow: [
@@ -313,7 +318,10 @@ class _FormsScreenState extends State<FormsScreen> {
                           '请同意服务条款',
                           backgroundColor: Colors.orange,
                           colorText: Colors.white,
-                          icon: const Icon(Iconsax.warning_2, color: Colors.white),
+                          icon: const Icon(
+                            Iconsax.warning_2,
+                            color: Colors.white,
+                          ),
                         );
                         return;
                       }
@@ -342,9 +350,9 @@ class _FormsScreenState extends State<FormsScreen> {
                 ),
               ),
             ).animate().fadeIn(delay: 400.ms).slideY(begin: 0.2),
-            
+
             const Gap(16),
-            
+
             // 重置按钮 - 简洁设计
             OutlinedButton.icon(
               onPressed: () {
@@ -375,7 +383,7 @@ class _FormsScreenState extends State<FormsScreen> {
                 ),
               ),
             ).animate().fadeIn(delay: 500.ms),
-            
+
             const Gap(20),
           ],
         ),
@@ -419,10 +427,7 @@ class _FormsScreenState extends State<FormsScreen> {
                 ),
                 Text(
                   subtitle,
-                  style: TextStyle(
-                    fontSize: 12,
-                    color: Colors.grey[600],
-                  ),
+                  style: TextStyle(fontSize: 12, color: Colors.grey[600]),
                 ),
               ],
             ),
@@ -476,7 +481,10 @@ class _FormsScreenState extends State<FormsScreen> {
             style: const TextStyle(fontSize: 15, fontWeight: FontWeight.w500),
             decoration: InputDecoration(
               hintText: hint,
-              hintStyle: TextStyle(color: Colors.grey[400], fontWeight: FontWeight.normal),
+              hintStyle: TextStyle(
+                color: Colors.grey[400],
+                fontWeight: FontWeight.normal,
+              ),
               prefixIcon: Icon(icon, color: const Color(0xFF6366F1), size: 20),
               suffixIcon: suffixIcon,
               filled: true,
@@ -491,7 +499,10 @@ class _FormsScreenState extends State<FormsScreen> {
               ),
               focusedBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(14),
-                borderSide: const BorderSide(color: Color(0xFF6366F1), width: 2),
+                borderSide: const BorderSide(
+                  color: Color(0xFF6366F1),
+                  width: 2,
+                ),
               ),
               errorBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(14),
@@ -501,7 +512,10 @@ class _FormsScreenState extends State<FormsScreen> {
                 borderRadius: BorderRadius.circular(14),
                 borderSide: const BorderSide(color: Colors.red, width: 2),
               ),
-              contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+              contentPadding: const EdgeInsets.symmetric(
+                horizontal: 16,
+                vertical: 16,
+              ),
             ),
           ),
         ),
@@ -533,9 +547,7 @@ class _FormsScreenState extends State<FormsScreen> {
           color: isSelected ? null : Colors.grey[100],
           borderRadius: BorderRadius.circular(14),
           border: Border.all(
-            color: isSelected
-                ? const Color(0xFFEC4899)
-                : Colors.grey[300]!,
+            color: isSelected ? const Color(0xFFEC4899) : Colors.grey[300]!,
             width: isSelected ? 2 : 1.5,
           ),
         ),
@@ -583,9 +595,7 @@ class _FormsScreenState extends State<FormsScreen> {
     Get.dialog(
       AlertDialog(
         backgroundColor: Colors.white,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(20),
-        ),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
         content: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
@@ -593,10 +603,7 @@ class _FormsScreenState extends State<FormsScreen> {
               padding: const EdgeInsets.all(16),
               decoration: BoxDecoration(
                 gradient: LinearGradient(
-                  colors: [
-                    const Color(0xFF10B981),
-                    const Color(0xFF059669),
-                  ],
+                  colors: [const Color(0xFF10B981), const Color(0xFF059669)],
                 ),
                 shape: BoxShape.circle,
               ),
@@ -609,10 +616,7 @@ class _FormsScreenState extends State<FormsScreen> {
             const Gap(20),
             const Text(
               '提交成功！',
-              style: TextStyle(
-                fontSize: 24,
-                fontWeight: FontWeight.bold,
-              ),
+              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
             ),
             const Gap(16),
             Container(
@@ -630,7 +634,11 @@ class _FormsScreenState extends State<FormsScreen> {
                   const Divider(height: 20),
                   _buildInfoRow('性别', _selectedGender, Iconsax.people),
                   const Divider(height: 20),
-                  _buildInfoRow('评分', '${_rating.round()} 星 ${_getRatingText(_rating.round())}', Iconsax.star1),
+                  _buildInfoRow(
+                    '评分',
+                    '${_rating.round()} 星 ${_getRatingText(_rating.round())}',
+                    Iconsax.star1,
+                  ),
                 ],
               ),
             ),
@@ -663,22 +671,15 @@ class _FormsScreenState extends State<FormsScreen> {
         const Gap(8),
         Text(
           '$label: ',
-          style: TextStyle(
-            color: Colors.grey[600],
-            fontSize: 14,
-          ),
+          style: TextStyle(color: Colors.grey[600], fontSize: 14),
         ),
         Expanded(
           child: Text(
             value,
-            style: const TextStyle(
-              fontWeight: FontWeight.w600,
-              fontSize: 14,
-            ),
+            style: const TextStyle(fontWeight: FontWeight.w600, fontSize: 14),
           ),
         ),
       ],
     );
   }
 }
-

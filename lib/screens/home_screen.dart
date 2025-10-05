@@ -6,6 +6,15 @@ import 'package:my_first_ios_app/screens/animations_screen.dart';
 import 'package:my_first_ios_app/screens/forms_screen.dart';
 import 'package:my_first_ios_app/screens/lists_screen.dart';
 
+/// 导航项数据模型（类型安全）
+class NavItem {
+  final IconData icon;
+  final String label;
+  final Color color;
+
+  const NavItem({required this.icon, required this.label, required this.color});
+}
+
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
@@ -23,11 +32,12 @@ class _HomeScreenState extends State<HomeScreen> {
     ListsScreen(),
   ];
 
-  final List<Map<String, dynamic>> _navItems = const [
-    {'icon': Iconsax.box, 'label': '基础组件', 'color': Color(0xFF6366F1)},
-    {'icon': Iconsax.electricity, 'label': '动画效果', 'color': Color(0xFFEC4899)},
-    {'icon': Iconsax.edit, 'label': '表单输入', 'color': Color(0xFF10B981)},
-    {'icon': Iconsax.menu_board, 'label': '列表网格', 'color': Color(0xFFF59E0B)},
+  // 类型安全的导航项列表
+  final List<NavItem> _navItems = const [
+    NavItem(icon: Iconsax.box, label: '基础组件', color: Color(0xFF6366F1)),
+    NavItem(icon: Iconsax.electricity, label: '动画效果', color: Color(0xFFEC4899)),
+    NavItem(icon: Iconsax.edit, label: '表单输入', color: Color(0xFF10B981)),
+    NavItem(icon: Iconsax.menu_board, label: '列表网格', color: Color(0xFFF59E0B)),
   ];
 
   @override
@@ -69,19 +79,17 @@ class _HomeScreenState extends State<HomeScreen> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Icon(
-                                  item['icon'] as IconData,
+                                  item.icon,
                                   size: 24,
-                                  color: isSelected
-                                      ? item['color'] as Color
-                                      : Colors.grey,
+                                  color: isSelected ? item.color : Colors.grey,
                                 ),
                                 const SizedBox(height: 3),
                                 Text(
-                                  item['label'] as String,
+                                  item.label,
                                   style: TextStyle(
                                     fontSize: 11,
                                     color: isSelected
-                                        ? item['color'] as Color
+                                        ? item.color
                                         : Colors.grey,
                                     fontWeight: isSelected
                                         ? FontWeight.w600

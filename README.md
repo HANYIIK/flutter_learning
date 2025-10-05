@@ -172,6 +172,7 @@ flutter run       # 运行项目
 ### **本项目文档：**
 - 📘 **[Flutter 零基础入门](docs/FLUTTER_BASICS.md)** - 从零开始学 Flutter（小白必读）
 - 📗 **[从 Web 到 Flutter](docs/FLUTTER_GUIDE.md)** - Web 开发者的进阶指南
+- 📖 **[Widget 速查手册](docs/WIDGET_REFERENCE.md)** - Widget vs HTML/React/Vue/shadcn 完整对照
 - 🔧 **[开发命令速查手册](docs/COMMANDS.md)** - Makefile 命令 + Dart 原生命令对照
 
 ### **官方文档：**

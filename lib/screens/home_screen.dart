@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:my_first_ios_app/screens/basic_widgets_screen.dart';
 import 'package:my_first_ios_app/screens/animations_screen.dart';
 import 'package:my_first_ios_app/screens/forms_screen.dart';
 import 'package:my_first_ios_app/screens/lists_screen.dart';
+import 'package:my_first_ios_app/controllers/cart_controller.dart';
 
 /// 导航项数据模型（类型安全）
 class NavItem {
@@ -42,8 +44,54 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final CartController cartController = Get.find<CartController>();
+
     return Scaffold(
+      // 主内容
       body: IndexedStack(index: _currentIndex, children: _screens),
+      // 悬浮按钮（购物车）
+      floatingActionButton: Obx(
+        () => Stack(
+          clipBehavior: Clip.none,
+          children: [
+            FloatingActionButton(
+              onPressed: () {
+                Get.toNamed('/cart-demo');
+              },
+              backgroundColor: const Color(0xFFEC4899),
+              child: const Icon(Iconsax.shopping_cart, color: Colors.white),
+            ),
+            if (cartController.totalItems > 0)
+              Positioned(
+                right: -4,
+                top: -4,
+                child: Container(
+                  padding: const EdgeInsets.all(5),
+                  decoration: BoxDecoration(
+                    color: Colors.red,
+                    shape: BoxShape.circle,
+                    border: Border.all(color: Colors.white, width: 2),
+                  ),
+                  constraints: const BoxConstraints(
+                    minWidth: 22,
+                    minHeight: 22,
+                  ),
+                  child: Center(
+                    child: Text(
+                      '${cartController.totalItems}',
+                      style: const TextStyle(
+                        color: Colors.white,
+                        fontSize: 11,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+          ],
+        ),
+      ),
+      // 底部导航栏
       bottomNavigationBar: Container(
         decoration: BoxDecoration(
           color: Theme.of(context).colorScheme.surface,

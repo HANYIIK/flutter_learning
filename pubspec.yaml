@@ -54,6 +54,9 @@ dependencies:
   
   # 🔧 实用工具
   gap: ^3.0.1  # 简化间距的widget
+  intl: ^0.19.0  # 国际化和格式化工具
+  shared_preferences: ^2.2.2  # 本地存储（相当于 localStorage）
+  sign_in_with_apple: ^5.0.0  # Apple 登录
 
 dev_dependencies:
   flutter_test:

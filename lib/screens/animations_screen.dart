@@ -4,6 +4,7 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:gap/gap.dart';
+import 'package:my_first_ios_app/widgets/app_drawer.dart';
 
 class AnimationsScreen extends StatefulWidget {
   const AnimationsScreen({super.key});
@@ -35,11 +36,11 @@ class _AnimationsScreenState extends State<AnimationsScreen>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: const AppDrawer(),
       appBar: AppBar(
         title: const Text('动画效果'),
         backgroundColor: const Color(0xFFEC4899),
         foregroundColor: Colors.white,
-        automaticallyImplyLeading: false,
       ),
       body: ListView(
         padding: const EdgeInsets.all(16),

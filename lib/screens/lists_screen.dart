@@ -4,6 +4,8 @@ import 'package:iconsax/iconsax.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:gap/gap.dart';
 import 'package:my_first_ios_app/controllers/cart_controller.dart';
+import 'package:my_first_ios_app/widgets/app_drawer.dart';
+import 'package:my_first_ios_app/models/cart_item.dart';
 
 class ListsScreen extends StatefulWidget {
   const ListsScreen({super.key});
@@ -79,11 +81,11 @@ class _ListsScreenState extends State<ListsScreen>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: const AppDrawer(),
       appBar: AppBar(
         title: const Text('列表与网格'),
         backgroundColor: const Color(0xFFF59E0B),
         foregroundColor: Colors.white,
-        automaticallyImplyLeading: false,
         bottom: TabBar(
           controller: _tabController,
           indicatorColor: Colors.white,

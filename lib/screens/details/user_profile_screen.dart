@@ -2,17 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:gap/gap.dart';
-import 'package:my_first_ios_app/controllers/user_controller.dart';
+import 'package:my_first_ios_app/controllers/auth_controller.dart';
+import 'package:my_first_ios_app/routes/app_routes.dart';
 
 /// 用户资料页
-/// 演示：GetX 全局状态管理
+/// 演示：GetX 全局状态管理 + LocalStorage 同步
 class UserProfileScreen extends StatelessWidget {
   const UserProfileScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    // 获取用户控制器（从全局获取）
-    final UserController userController = Get.find<UserController>();
+    // 获取认证控制器（包含真实的登录用户信息）
+    final authController = Get.find<AuthController>();
 
     return Scaffold(
       appBar: AppBar(
@@ -23,7 +24,7 @@ class UserProfileScreen extends StatelessWidget {
           IconButton(
             icon: const Icon(Iconsax.edit),
             onPressed: () {
-              _showEditDialog(context, userController);
+              _showEditDialog(context, authController);
             },
           ),
         ],
@@ -53,7 +54,7 @@ class UserProfileScreen extends StatelessWidget {
                       ),
                       child: Center(
                         child: Text(
-                          userController.userAvatar.value,
+                          authController.currentUser.value?.avatar ?? '👤',
                           style: const TextStyle(fontSize: 50),
                         ),
                       ),
@@ -63,7 +64,7 @@ class UserProfileScreen extends StatelessWidget {
                   // 用户名
                   Obx(
                     () => Text(
-                      userController.userName.value,
+                      authController.currentUser.value?.name ?? '游客',
                       style: const TextStyle(
                         fontSize: 24,
                         fontWeight: FontWeight.bold,
@@ -75,7 +76,7 @@ class UserProfileScreen extends StatelessWidget {
                   // 邮箱
                   Obx(
                     () => Text(
-                      userController.userEmail.value,
+                      authController.currentUser.value?.email ?? '',
                       style: TextStyle(
                         fontSize: 16,
                         color: Colors.white.withOpacity(0.9),
@@ -98,7 +99,7 @@ class UserProfileScreen extends StatelessWidget {
                     title: '编辑资料',
                     subtitle: '修改个人信息',
                     onTap: () {
-                      _showEditDialog(context, userController);
+                      _showEditDialog(context, authController);
                     },
                   ),
                   _buildMenuItem(
@@ -134,7 +135,7 @@ class UserProfileScreen extends StatelessWidget {
                     subtitle: '安全退出当前账户',
                     color: Colors.red,
                     onTap: () {
-                      _showLogoutDialog(context, userController);
+                      _showLogoutDialog(context, authController);
                     },
                   ),
                 ],
@@ -174,13 +175,15 @@ class UserProfileScreen extends StatelessWidget {
     );
   }
 
-  void _showEditDialog(BuildContext context, UserController controller) {
-    final nameController = TextEditingController(
-      text: controller.userName.value,
-    );
-    final emailController = TextEditingController(
-      text: controller.userEmail.value,
-    );
+  void _showEditDialog(BuildContext context, AuthController controller) {
+    final currentUser = controller.currentUser.value;
+    if (currentUser == null) {
+      Get.snackbar('错误', '用户信息不存在');
+      return;
+    }
+
+    final nameController = TextEditingController(text: currentUser.name);
+    final emailController = TextEditingController(text: currentUser.email);
 
     Get.dialog(
       AlertDialog(
@@ -202,17 +205,29 @@ class UserProfileScreen extends StatelessWidget {
                 labelText: '邮箱',
                 prefixIcon: Icon(Iconsax.sms),
               ),
+              keyboardType: TextInputType.emailAddress,
             ),
           ],
         ),
         actions: [
           TextButton(onPressed: () => Get.back(), child: const Text('取消')),
           FilledButton(
-            onPressed: () {
-              controller.updateName(nameController.text);
-              controller.updateEmail(emailController.text);
+            onPressed: () async {
+              // 验证输入
+              if (nameController.text.isEmpty) {
+                Get.snackbar('错误', '用户名不能为空');
+                return;
+              }
+
+              // 更新用户信息
+              final updatedUser = currentUser.copyWith(
+                name: nameController.text,
+                email: emailController.text,
+              );
+
+              await controller.updateUser(updatedUser);
               Get.back();
-              Get.snackbar('成功', '资料已更新');
+              Get.snackbar('成功', '资料已更新并同步到本地存储');
             },
             child: const Text('保存'),
           ),
@@ -221,17 +236,18 @@ class UserProfileScreen extends StatelessWidget {
     );
   }
 
-  void _showLogoutDialog(BuildContext context, UserController controller) {
+  void _showLogoutDialog(BuildContext context, AuthController controller) {
     Get.dialog(
       AlertDialog(
         title: const Text('退出登录'),
-        content: const Text('确定要退出登录吗？'),
+        content: const Text('确定要退出登录吗？这将清除本地存储的所有数据。'),
         actions: [
           TextButton(onPressed: () => Get.back(), child: const Text('取消')),
           FilledButton(
-            onPressed: () {
-              controller.logout();
-              Get.back();
+            onPressed: () async {
+              Get.back(); // 先关闭 Dialog
+              await controller.signOut(); // 退出登录（清除 localStorage）
+              Get.offAllNamed(AppRoutes.login); // 跳转到登录页
             },
             style: FilledButton.styleFrom(backgroundColor: Colors.red),
             child: const Text('退出'),

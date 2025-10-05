@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:gap/gap.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:my_first_ios_app/widgets/app_drawer.dart';
 
 class FormsScreen extends StatefulWidget {
   const FormsScreen({super.key});
@@ -32,11 +33,11 @@ class _FormsScreenState extends State<FormsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: const AppDrawer(),
       appBar: AppBar(
         title: const Text('表单与输入'),
         backgroundColor: const Color(0xFF10B981),
         foregroundColor: Colors.white,
-        automaticallyImplyLeading: false,
       ),
       body: Form(
         key: _formKey,

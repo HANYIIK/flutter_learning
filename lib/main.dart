@@ -4,13 +4,19 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:my_first_ios_app/routes/app_pages.dart';
 import 'package:my_first_ios_app/routes/app_routes.dart';
+import 'package:my_first_ios_app/controllers/auth_controller.dart';
 import 'package:my_first_ios_app/controllers/cart_controller.dart';
-import 'package:my_first_ios_app/controllers/user_controller.dart';
 
-void main() {
+void main() async {
+  // 确保 Flutter 绑定初始化
+  WidgetsFlutterBinding.ensureInitialized();
+
   // 初始化全局控制器
   Get.put(CartController(), permanent: true);
-  Get.put(UserController(), permanent: true);
+  final authController = Get.put(AuthController(), permanent: true);
+
+  // 等待认证状态检查完成
+  await authController.checkLoginStatus();
 
   runApp(const MyFlutterLearningApp());
 }
@@ -20,6 +26,8 @@ class MyFlutterLearningApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final authController = Get.find<AuthController>();
+
     // 使用 ScreenUtil 包裹应用，实现响应式适配
     return ScreenUtilInit(
       // 设计稿尺寸（iPhone 14 Pro 标准）
@@ -32,7 +40,9 @@ class MyFlutterLearningApp extends StatelessWidget {
           debugShowCheckedModeBanner: false,
 
           // GetX 路由配置
-          initialRoute: AppRoutes.home,
+          initialRoute: authController.isLoggedIn.value
+              ? AppRoutes.home
+              : AppRoutes.login,
           getPages: AppPages.routes,
 
           // 主题配置

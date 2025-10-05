@@ -193,7 +193,7 @@ Obx(() => Text('${controller.count}'))  // 类似 React 的 {count}
 - 📁 `lib/controllers/` - 所有 GetX 控制器
   - `counter_controller.dart` - 简单状态（计数器）
   - `cart_controller.dart` - 复杂状态（购物车列表）
-  - `user_controller.dart` - 全局状态（用户信息）
+  - `auth_controller.dart` - 全局状态（认证/用户信息/深色模式）
 
 ---
 
@@ -509,7 +509,7 @@ lib/
 ├── controllers/                       # 状态管理（GetX）
 │   ├── counter_controller.dart       # 简单状态：计数器
 │   ├── cart_controller.dart          # 复杂状态：购物车列表
-│   └── user_controller.dart          # 全局状态：用户信息
+│   └── auth_controller.dart          # 全局状态：认证/用户/深色模式
 │
 ├── screens/                           # 页面组件
 │   ├── home_screen.dart              # 主页（底部 TabBar）
@@ -724,8 +724,8 @@ void increment() => count++;
 var cart = <Item>[].obs;
 void addItem(Item item) => cart.add(item);
 
-// 全局状态（自动实现）
-Get.put(UserController(), permanent: true);
+// 全局状态（自动实现 + LocalStorage 持久化）
+Get.put(AuthController(), permanent: true);
 ```
 
 **GetX 的优势：**

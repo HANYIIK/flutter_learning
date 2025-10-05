@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:gap/gap.dart';
+import 'package:my_first_ios_app/widgets/app_drawer.dart';
 
 class BasicWidgetsScreen extends StatefulWidget {
   const BasicWidgetsScreen({super.key});
@@ -19,11 +20,11 @@ class _BasicWidgetsScreenState extends State<BasicWidgetsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: const AppDrawer(),
       appBar: AppBar(
         title: const Text('基础组件'),
         backgroundColor: Theme.of(context).colorScheme.primary,
         foregroundColor: Colors.white,
-        automaticallyImplyLeading: false,
       ),
       body: ListView(
         padding: const EdgeInsets.all(16),

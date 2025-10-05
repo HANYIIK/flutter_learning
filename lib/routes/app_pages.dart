@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:my_first_ios_app/screens/auth/login_screen.dart';
 import 'package:my_first_ios_app/screens/home_screen.dart';
 import 'package:my_first_ios_app/screens/details/product_detail_screen.dart';
 import 'package:my_first_ios_app/screens/details/user_profile_screen.dart';
@@ -12,6 +13,13 @@ import 'package:my_first_ios_app/routes/app_routes.dart';
 /// 这里配置所有的路由页面和过渡动画
 class AppPages {
   static final routes = [
+    // 登录页面
+    GetPage(
+      name: AppRoutes.login,
+      page: () => const LoginScreen(),
+      transition: Transition.fadeIn,
+    ),
+
     // 主页面
     GetPage(
       name: AppRoutes.home,

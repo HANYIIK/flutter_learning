@@ -59,7 +59,7 @@ lib/
 ├── controllers/                   # 状态管理层
 │   ├── counter_controller.dart   # 计数器状态
 │   ├── cart_controller.dart      # 购物车状态
-│   └── user_controller.dart      # 用户状态
+│   └── auth_controller.dart      # 认证状态（登录/用户/深色模式）
 │
 ├── routes/                        # 路由配置层
 │   ├── app_routes.dart           # 路由常量
@@ -208,7 +208,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';  // 屏幕适配
 import 'routes/app_pages.dart';                      // 自己的文件：路由配置
 import 'routes/app_routes.dart';                     // 自己的文件：路由常量
 import 'controllers/cart_controller.dart';           // 购物车控制器
-import 'controllers/user_controller.dart';           // 用户控制器
+import 'controllers/auth_controller.dart';           // 认证控制器
 
 // 2️⃣ main() 函数 - 程序入口（必须有）
 void main() {
@@ -216,7 +216,10 @@ void main() {
   
   // 🔥 初始化全局控制器（永久存在）
   Get.put(CartController(), permanent: true);
-  Get.put(UserController(), permanent: true);
+  final authController = Get.put(AuthController(), permanent: true);
+  
+  // 加载认证状态
+  await authController.checkLoginStatus();
   
   // 🚀 运行应用
   runApp(const MyFlutterLearningApp());
@@ -277,9 +280,11 @@ import 'routes/app_pages.dart';
 ### **第 2 部分：main() 函数**
 
 ```dart
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   Get.put(CartController(), permanent: true);
-  Get.put(UserController(), permanent: true);
+  final authController = Get.put(AuthController(), permanent: true);
+  await authController.checkLoginStatus();
   runApp(const MyFlutterLearningApp());
 }
 ```
@@ -668,9 +673,11 @@ Get.dialog(AlertDialog(...));
    ↓
 4. Get.put() 注册全局控制器
    ├─ CartController 注册（购物车）
-   └─ UserController 注册（用户）
+   └─ AuthController 注册（认证/用户/深色模式）
    ↓
-5. runApp() 启动应用
+5. checkLoginStatus() 检查登录状态
+   ↓
+6. runApp() 启动应用
    ↓
 6. MyFlutterLearningApp 创建
    ↓
@@ -1319,7 +1326,7 @@ required       // 必需参数
 
 ```dart
 Get.put(CartController(), permanent: true);
-Get.put(UserController(), permanent: true);
+Get.put(AuthController(), permanent: true);
 ```
 
 **作用：**
@@ -1573,8 +1580,11 @@ static final routes = [
    ├─ Get.put(CartController(), permanent: true)
    │   └─ 创建购物车控制器，全局可用
    │
-   ├─ Get.put(UserController(), permanent: true)
-   │   └─ 创建用户控制器，全局可用
+   ├─ Get.put(AuthController(), permanent: true)
+   │   └─ 创建认证控制器（登录/用户/深色模式），全局可用
+   │
+   ├─ checkLoginStatus()
+   │   └─ 检查本地登录状态（SharedPreferences）
    │
    └─ runApp(MyFlutterLearningApp())
        └─ 启动应用

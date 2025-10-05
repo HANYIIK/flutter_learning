@@ -34,8 +34,8 @@ class CartDemoScreen extends StatelessWidget {
                       ),
                       FilledButton(
                         onPressed: () {
-                          controller.clearCart();
-                          Get.back();
+                          Get.back(); // 先关闭 Dialog
+                          controller.clearCart(); // 再清空购物车
                         },
                         style: FilledButton.styleFrom(
                           backgroundColor: Colors.red,

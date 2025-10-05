@@ -2,16 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:gap/gap.dart';
-import 'package:my_first_ios_app/controllers/user_controller.dart';
+import 'package:my_first_ios_app/controllers/auth_controller.dart';
 
 /// 设置页面
-/// 演示：GetX 响应式状态、开关组件
+/// 演示：GetX 响应式状态、开关组件、LocalStorage 同步
 class SettingsScreen extends StatelessWidget {
   const SettingsScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final UserController userController = Get.find<UserController>();
+    final authController = Get.find<AuthController>();
 
     return Scaffold(
       appBar: AppBar(
@@ -39,17 +39,17 @@ class SettingsScreen extends StatelessWidget {
                   () => SwitchListTile(
                     title: const Text('深色模式'),
                     subtitle: Text(
-                      userController.isDarkMode.value ? '已启用深色主题' : '已启用浅色主题',
+                      authController.isDarkMode.value ? '已启用深色主题' : '已启用浅色主题',
                     ),
                     secondary: Icon(
-                      userController.isDarkMode.value
+                      authController.isDarkMode.value
                           ? Iconsax.moon
                           : Iconsax.sun_1,
                       color: const Color(0xFF10B981),
                     ),
-                    value: userController.isDarkMode.value,
+                    value: authController.isDarkMode.value,
                     onChanged: (value) {
-                      userController.toggleTheme();
+                      authController.toggleDarkMode();
                     },
                   ),
                 ),

@@ -1,23 +1,5 @@
 import 'package:get/get.dart';
-
-/// 购物车商品模型
-class CartItem {
-  final String id;
-  final String name;
-  final double price;
-  final String icon;
-  int quantity;
-
-  CartItem({
-    required this.id,
-    required this.name,
-    required this.price,
-    required this.icon,
-    this.quantity = 1,
-  });
-
-  double get total => price * quantity;
-}
+import 'package:my_first_ios_app/models/cart_item.dart';
 
 /// 购物车控制器
 /// 演示 GetX 复杂状态管理：列表操作、计算属性等

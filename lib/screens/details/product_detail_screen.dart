@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:gap/gap.dart';
 import 'package:my_first_ios_app/controllers/cart_controller.dart';
+import 'package:my_first_ios_app/models/cart_item.dart';
 
 /// 产品详情页
 /// 演示：路由参数传递、GetX 状态管理

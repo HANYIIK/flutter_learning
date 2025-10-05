@@ -1,6 +1,9 @@
 /// 路由名称常量
 /// 所有路由名称都定义在这里，方便管理和避免拼写错误
 class AppRoutes {
+  // 认证相关
+  static const login = '/login';
+
   // 主页面（TabBar 容器）
   static const home = '/';
 

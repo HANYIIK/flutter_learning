@@ -68,30 +68,18 @@ class _HomeScreenState extends State<HomeScreen> {
                               mainAxisSize: MainAxisSize.min,
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                Container(
-                                  padding: const EdgeInsets.all(6),
-                                  decoration: isSelected
-                                      ? BoxDecoration(
-                                          color: (item['color'] as Color)
-                                              .withOpacity(0.1),
-                                          borderRadius: BorderRadius.circular(
-                                            10,
-                                          ),
-                                        )
-                                      : null,
-                                  child: Icon(
-                                    item['icon'] as IconData,
-                                    size: 22,
-                                    color: isSelected
-                                        ? item['color'] as Color
-                                        : Colors.grey,
-                                  ),
+                                Icon(
+                                  item['icon'] as IconData,
+                                  size: 24,
+                                  color: isSelected
+                                      ? item['color'] as Color
+                                      : Colors.grey,
                                 ),
-                                const SizedBox(height: 2),
+                                const SizedBox(height: 3),
                                 Text(
                                   item['label'] as String,
                                   style: TextStyle(
-                                    fontSize: 10,
+                                    fontSize: 11,
                                     color: isSelected
                                         ? item['color'] as Color
                                         : Colors.grey,

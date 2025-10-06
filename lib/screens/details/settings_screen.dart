@@ -3,6 +3,9 @@ import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:gap/gap.dart';
 import 'package:my_first_ios_app/controllers/auth_controller.dart';
+import 'package:my_first_ios_app/constants/colors.dart';
+import 'package:my_first_ios_app/constants/strings.dart';
+import 'package:my_first_ios_app/routes/app_routes.dart';
 
 /// 设置页面
 /// 演示：GetX 响应式状态、开关组件、LocalStorage 同步
@@ -16,16 +19,16 @@ class SettingsScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('设置'),
-        backgroundColor: const Color(0xFF10B981),
+        backgroundColor: AppColors.accent,
         foregroundColor: Colors.white,
       ),
       body: ListView(
         padding: const EdgeInsets.all(16),
         children: [
           // 外观设置
-          const Text(
+          Text(
             '外观',
-            style: TextStyle(
+            style: const TextStyle(
               fontSize: 14,
               fontWeight: FontWeight.bold,
               color: Colors.grey,
@@ -57,7 +60,7 @@ class SettingsScreen extends StatelessWidget {
                 ListTile(
                   leading: const Icon(
                     Iconsax.colorfilter,
-                    color: Color(0xFF10B981),
+                    color: AppColors.accent,
                   ),
                   title: const Text('主题颜色'),
                   subtitle: const Text('自定义主题色'),
@@ -73,9 +76,9 @@ class SettingsScreen extends StatelessWidget {
           const Gap(24),
 
           // 通知设置
-          const Text(
+          Text(
             '通知',
-            style: TextStyle(
+            style: const TextStyle(
               fontSize: 14,
               fontWeight: FontWeight.bold,
               color: Colors.grey,
@@ -90,7 +93,7 @@ class SettingsScreen extends StatelessWidget {
                   subtitle: const Text('接收重要更新'),
                   secondary: const Icon(
                     Iconsax.notification,
-                    color: Color(0xFF10B981),
+                    color: AppColors.accent,
                   ),
                   value: true,
                   onChanged: (value) {},
@@ -101,7 +104,7 @@ class SettingsScreen extends StatelessWidget {
                   subtitle: const Text('通知提示音'),
                   secondary: const Icon(
                     Iconsax.volume_high,
-                    color: Color(0xFF10B981),
+                    color: AppColors.accent,
                   ),
                   value: true,
                   onChanged: (value) {},
@@ -113,9 +116,9 @@ class SettingsScreen extends StatelessWidget {
           const Gap(24),
 
           // 其他设置
-          const Text(
+          Text(
             '其他',
-            style: TextStyle(
+            style: const TextStyle(
               fontSize: 14,
               fontWeight: FontWeight.bold,
               color: Colors.grey,
@@ -128,7 +131,7 @@ class SettingsScreen extends StatelessWidget {
                 ListTile(
                   leading: const Icon(
                     Iconsax.shield_tick,
-                    color: Color(0xFF10B981),
+                    color: AppColors.accent,
                   ),
                   title: const Text('隐私政策'),
                   trailing: const Icon(Iconsax.arrow_right_3),
@@ -138,7 +141,7 @@ class SettingsScreen extends StatelessWidget {
                 ListTile(
                   leading: const Icon(
                     Iconsax.document_text,
-                    color: Color(0xFF10B981),
+                    color: AppColors.accent,
                   ),
                   title: const Text('服务条款'),
                   trailing: const Icon(Iconsax.arrow_right_3),
@@ -148,12 +151,12 @@ class SettingsScreen extends StatelessWidget {
                 ListTile(
                   leading: const Icon(
                     Iconsax.info_circle,
-                    color: Color(0xFF10B981),
+                    color: AppColors.accent,
                   ),
                   title: const Text('关于'),
                   trailing: const Icon(Iconsax.arrow_right_3),
                   onTap: () {
-                    Get.toNamed('/about');
+                    Get.toNamed(AppRoutes.about);
                   },
                 ),
               ],
@@ -167,12 +170,12 @@ class SettingsScreen extends StatelessWidget {
             child: Column(
               children: [
                 Text(
-                  'Flutter 教学项目',
+                  AppStrings.appName,
                   style: TextStyle(color: Colors.grey[600], fontSize: 14),
                 ),
                 const Gap(4),
                 Text(
-                  'v1.0.0',
+                  AppStrings.appVersion,
                   style: TextStyle(color: Colors.grey[400], fontSize: 12),
                 ),
               ],

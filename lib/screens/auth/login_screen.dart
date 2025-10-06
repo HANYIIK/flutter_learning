@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:gap/gap.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:my_first_ios_app/controllers/auth_controller.dart';
 import 'package:my_first_ios_app/constants/colors.dart';
 import 'package:my_first_ios_app/utils/validators.dart';
+import 'package:my_first_ios_app/routes/app_routes.dart';
 import 'dart:io' show Platform;
 
 /// 登录页面
@@ -56,7 +58,7 @@ class _LoginScreenState extends State<LoginScreen> {
       );
 
       if (success) {
-        Get.offAllNamed('/');
+        Get.offAllNamed(AppRoutes.home);
       }
     }
   }
@@ -226,9 +228,9 @@ class _LoginScreenState extends State<LoginScreen> {
                                           strokeWidth: 2,
                                         ),
                                       )
-                                    : const Text(
+                                    : Text(
                                         '登录',
-                                        style: TextStyle(
+                                        style: const TextStyle(
                                           fontSize: 16,
                                           fontWeight: FontWeight.bold,
                                         ),
@@ -264,7 +266,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             Obx(
                               () => SizedBox(
                                 height: 50,
-                                child: OutlinedButton.icon(
+                                child: OutlinedButton(
                                   onPressed: authController.isLoading.value
                                       ? null
                                       : _handleAppleLogin,
@@ -275,16 +277,23 @@ class _LoginScreenState extends State<LoginScreen> {
                                       borderRadius: BorderRadius.circular(12),
                                     ),
                                   ),
-                                  icon: const Text(
-                                    '🍎',
-                                    style: TextStyle(fontSize: 20),
-                                  ),
-                                  label: const Text(
-                                    '使用 Apple 账号登录',
-                                    style: TextStyle(
-                                      fontSize: 15,
-                                      fontWeight: FontWeight.w600,
-                                    ),
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      FaIcon(FontAwesomeIcons.apple, size: 20),
+                                      const SizedBox(width: 10),
+                                      const Text(
+                                        '使用 Apple 账号登录',
+                                        style: TextStyle(
+                                          fontSize: 15,
+                                          fontWeight: FontWeight.w600,
+                                          height: 1.0,
+                                        ),
+                                      ),
+                                    ],
                                   ),
                                 ),
                               ),

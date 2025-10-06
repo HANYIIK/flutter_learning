@@ -4,6 +4,7 @@ import 'package:iconsax/iconsax.dart';
 import 'package:gap/gap.dart';
 import 'package:my_first_ios_app/controllers/auth_controller.dart';
 import 'package:my_first_ios_app/routes/app_routes.dart';
+import 'package:my_first_ios_app/constants/colors.dart';
 
 /// 用户资料页
 /// 演示：GetX 全局状态管理 + LocalStorage 同步
@@ -17,8 +18,8 @@ class UserProfileScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('个人资料'),
-        backgroundColor: const Color(0xFF6366F1),
+        title: const Text('用户资料'),
+        backgroundColor: AppColors.primary,
         foregroundColor: Colors.white,
         actions: [
           IconButton(
@@ -36,11 +37,7 @@ class UserProfileScreen extends StatelessWidget {
             Container(
               width: double.infinity,
               padding: const EdgeInsets.all(32),
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  colors: [const Color(0xFF6366F1), const Color(0xFF8B5CF6)],
-                ),
-              ),
+              decoration: BoxDecoration(gradient: AppColors.purpleGradient),
               child: Column(
                 children: [
                   // 头像
@@ -159,10 +156,10 @@ class UserProfileScreen extends StatelessWidget {
         leading: Container(
           padding: const EdgeInsets.all(8),
           decoration: BoxDecoration(
-            color: (color ?? const Color(0xFF6366F1)).withOpacity(0.1),
+            color: (color ?? AppColors.primary).withOpacity(0.1),
             borderRadius: BorderRadius.circular(8),
           ),
-          child: Icon(icon, color: color ?? const Color(0xFF6366F1)),
+          child: Icon(icon, color: color ?? AppColors.primary),
         ),
         title: Text(
           title,
@@ -249,8 +246,8 @@ class UserProfileScreen extends StatelessWidget {
               await controller.signOut(); // 退出登录（清除 localStorage）
               Get.offAllNamed(AppRoutes.login); // 跳转到登录页
             },
-            style: FilledButton.styleFrom(backgroundColor: Colors.red),
-            child: const Text('退出'),
+            style: FilledButton.styleFrom(backgroundColor: AppColors.error),
+            child: const Text('退出登录'),
           ),
         ],
       ),

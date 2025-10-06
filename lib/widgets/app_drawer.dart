@@ -4,6 +4,7 @@ import 'package:iconsax/iconsax.dart';
 import 'package:gap/gap.dart';
 import 'package:my_first_ios_app/controllers/auth_controller.dart';
 import 'package:my_first_ios_app/routes/app_routes.dart';
+import 'package:my_first_ios_app/constants/colors.dart';
 
 /// 全局共享的抽屉组件
 class AppDrawer extends StatelessWidget {
@@ -21,13 +22,7 @@ class AppDrawer extends StatelessWidget {
           // 抽屉头部（用户信息）
           Container(
             height: 200,
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight,
-                colors: [const Color(0xFF6366F1), const Color(0xFF8B5CF6)],
-              ),
-            ),
+            decoration: BoxDecoration(gradient: AppColors.purpleGradient),
             padding: const EdgeInsets.fromLTRB(20, 40, 20, 20),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -88,7 +83,7 @@ class AppDrawer extends StatelessWidget {
             subtitle: '查看和编辑个人信息',
             onTap: () {
               Navigator.pop(context);
-              Get.toNamed('/user-profile');
+              Get.toNamed(AppRoutes.userProfile);
             },
           ),
 
@@ -99,7 +94,7 @@ class AppDrawer extends StatelessWidget {
             subtitle: '应用偏好设置',
             onTap: () {
               Navigator.pop(context);
-              Get.toNamed('/settings');
+              Get.toNamed(AppRoutes.settings);
             },
           ),
 
@@ -110,7 +105,7 @@ class AppDrawer extends StatelessWidget {
             subtitle: '应用信息和版本',
             onTap: () {
               Navigator.pop(context);
-              Get.toNamed('/about');
+              Get.toNamed(AppRoutes.about);
             },
           ),
 
@@ -122,7 +117,7 @@ class AppDrawer extends StatelessWidget {
             icon: Iconsax.logout,
             title: '退出登录',
             subtitle: '安全退出当前账户',
-            iconColor: Colors.red,
+            iconColor: AppColors.error,
             onTap: () {
               Navigator.pop(context);
               _showLogoutDialog(context, authController);
@@ -146,14 +141,10 @@ class AppDrawer extends StatelessWidget {
       leading: Container(
         padding: const EdgeInsets.all(8),
         decoration: BoxDecoration(
-          color: (iconColor ?? const Color(0xFF6366F1)).withOpacity(0.1),
+          color: (iconColor ?? AppColors.primary).withOpacity(0.1),
           borderRadius: BorderRadius.circular(8),
         ),
-        child: Icon(
-          icon,
-          color: iconColor ?? const Color(0xFF6366F1),
-          size: 22,
-        ),
+        child: Icon(icon, color: iconColor ?? AppColors.primary, size: 22),
       ),
       title: Text(
         title,
@@ -174,7 +165,7 @@ class AppDrawer extends StatelessWidget {
     Get.dialog(
       AlertDialog(
         title: const Text('退出登录'),
-        content: const Text('确定要退出登录吗？'),
+        content: const Text('确定要退出登录吗？这将清除本地存储的所有数据。'),
         actions: [
           TextButton(onPressed: () => Get.back(), child: const Text('取消')),
           FilledButton(
@@ -183,8 +174,8 @@ class AppDrawer extends StatelessWidget {
               await controller.signOut(); // 退出登录
               Get.offAllNamed(AppRoutes.login); // 跳转到登录页
             },
-            style: FilledButton.styleFrom(backgroundColor: Colors.red),
-            child: const Text('退出'),
+            style: FilledButton.styleFrom(backgroundColor: AppColors.error),
+            child: const Text('退出登录'),
           ),
         ],
       ),

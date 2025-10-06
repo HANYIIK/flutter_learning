@@ -7,6 +7,8 @@ import 'package:my_first_ios_app/screens/animations_screen.dart';
 import 'package:my_first_ios_app/screens/forms_screen.dart';
 import 'package:my_first_ios_app/screens/lists_screen.dart';
 import 'package:my_first_ios_app/controllers/cart_controller.dart';
+import 'package:my_first_ios_app/constants/colors.dart';
+import 'package:my_first_ios_app/routes/app_routes.dart';
 
 /// 导航项数据模型（类型安全）
 class NavItem {
@@ -36,10 +38,10 @@ class _HomeScreenState extends State<HomeScreen> {
 
   // 类型安全的导航项列表
   final List<NavItem> _navItems = const [
-    NavItem(icon: Iconsax.box, label: '基础组件', color: Color(0xFF6366F1)),
-    NavItem(icon: Iconsax.electricity, label: '动画效果', color: Color(0xFFEC4899)),
-    NavItem(icon: Iconsax.edit, label: '表单输入', color: Color(0xFF10B981)),
-    NavItem(icon: Iconsax.menu_board, label: '列表网格', color: Color(0xFFF59E0B)),
+    NavItem(icon: Iconsax.box, label: '基础组件', color: AppColors.tab1),
+    NavItem(icon: Iconsax.electricity, label: '动画效果', color: AppColors.tab2),
+    NavItem(icon: Iconsax.edit, label: '表单输入', color: AppColors.tab3),
+    NavItem(icon: Iconsax.menu_board, label: '列表网格', color: AppColors.tab4),
   ];
 
   @override
@@ -56,9 +58,9 @@ class _HomeScreenState extends State<HomeScreen> {
           children: [
             FloatingActionButton(
               onPressed: () {
-                Get.toNamed('/cart-demo');
+                Get.toNamed(AppRoutes.cartDemo);
               },
-              backgroundColor: const Color(0xFFEC4899),
+              backgroundColor: AppColors.secondary,
               child: const Icon(Iconsax.shopping_cart, color: Colors.white),
             ),
             if (cartController.totalItems > 0)

@@ -4,6 +4,7 @@ import 'package:iconsax/iconsax.dart';
 import 'package:gap/gap.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:my_first_ios_app/controllers/counter_controller.dart';
+import 'package:my_first_ios_app/constants/colors.dart';
 
 /// 计数器演示页面
 /// 演示：GetX 最简单的状态管理
@@ -18,7 +19,7 @@ class CounterDemoScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('计数器演示'),
-        backgroundColor: const Color(0xFF6366F1),
+        backgroundColor: AppColors.primary,
         foregroundColor: Colors.white,
       ),
       body: SingleChildScrollView(

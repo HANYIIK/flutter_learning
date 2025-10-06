@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:gap/gap.dart';
 import 'package:my_first_ios_app/controllers/cart_controller.dart';
+import 'package:my_first_ios_app/constants/colors.dart';
 
 /// 购物车演示页面
 /// 演示：GetX 复杂状态管理（列表操作）
@@ -16,7 +17,7 @@ class CartDemoScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('购物车演示'),
-        backgroundColor: const Color(0xFFEC4899),
+        backgroundColor: AppColors.secondary,
         foregroundColor: Colors.white,
         actions: [
           IconButton(
@@ -38,7 +39,7 @@ class CartDemoScreen extends StatelessWidget {
                           controller.clearCart(); // 再清空购物车
                         },
                         style: FilledButton.styleFrom(
-                          backgroundColor: Colors.red,
+                          backgroundColor: AppColors.error,
                         ),
                         child: const Text('清空'),
                       ),

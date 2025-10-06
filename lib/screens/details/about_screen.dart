@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:gap/gap.dart';
+import 'package:my_first_ios_app/constants/colors.dart';
+import 'package:my_first_ios_app/constants/strings.dart';
 
 /// 关于页面
 /// 演示：简单的信息展示页面
@@ -25,9 +27,7 @@ class AboutScreen extends StatelessWidget {
               width: 120,
               height: 120,
               decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  colors: [const Color(0xFF6366F1), const Color(0xFF8B5CF6)],
-                ),
+                gradient: AppColors.purpleGradient,
                 borderRadius: BorderRadius.circular(30),
               ),
               child: const Center(
@@ -36,22 +36,22 @@ class AboutScreen extends StatelessWidget {
             ),
             const Gap(24),
 
-            const Text(
-              'Flutter 教学项目',
-              style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
+            Text(
+              AppStrings.appName,
+              style: const TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
             ),
             const Gap(8),
-            const Text(
-              'v1.0.0',
-              style: TextStyle(fontSize: 16, color: Colors.grey),
+            Text(
+              AppStrings.appVersion,
+              style: const TextStyle(fontSize: 16, color: Colors.grey),
             ),
 
             const Gap(32),
 
-            const Text(
-              '一个完整的 Flutter 入门教学项目，展示了 Flutter 开发的各种核心概念和最佳实践。',
+            Text(
+              AppStrings.appDescription,
               textAlign: TextAlign.center,
-              style: TextStyle(fontSize: 16, height: 1.5),
+              style: const TextStyle(fontSize: 16, height: 1.5),
             ),
 
             const Gap(32),

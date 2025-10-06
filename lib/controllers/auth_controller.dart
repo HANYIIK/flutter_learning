@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:my_first_ios_app/models/user.dart';
 import 'package:my_first_ios_app/services/auth_service.dart';
+import 'package:my_first_ios_app/utils/logger.dart';
 
 /// 认证控制器
 /// 管理登录状态和用户信息
@@ -47,7 +48,7 @@ class AuthController extends GetxController {
         isDarkMode.value = await authService.isDarkMode();
       }
     } catch (e) {
-      print('检查登录状态失败: $e');
+      Log.e('检查登录状态失败', e);
     } finally {
       isLoading.value = false;
     }

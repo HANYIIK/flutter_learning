@@ -57,6 +57,7 @@ dependencies:
   intl: ^0.19.0  # 国际化和格式化工具
   shared_preferences: ^2.2.2  # 本地存储（相当于 localStorage）
   sign_in_with_apple: ^5.0.0  # Apple 登录
+  logger: ^2.0.2  # 日志框架（美观、强大）
 
 dev_dependencies:
   flutter_test:
